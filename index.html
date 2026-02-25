@@ -211,6 +211,8 @@ input[type=range]::-moz-range-thumb {
 </style>
 </head>
 <body class="bg-background-light dark:bg-background-dark bg-paper-texture font-display text-slate-900 dark:text-slate-100 min-h-screen relative overflow-x-hidden">
+<!-- Debug indicator -->
+<div id="debugIndicator" class="fixed top-2 right-2 bg-green-500 text-white text-xs px-2 py-1 rounded z-[9999] hidden">JS Loaded</div>
 <div class="fixed inset-0 pointer-events-none z-0">
 <div class="absolute -right-20 top-20 w-[600px] h-[600px] ink-wash-illustration opacity-50 rotate-12"></div>
 <div class="absolute -left-20 bottom-0 w-[500px] h-[500px] ink-wash-illustration opacity-30 -rotate-12"></div>
@@ -642,6 +644,16 @@ Refresh
 <script>
 // Tea Insight Dashboard Interactive Functionality
 document.addEventListener('DOMContentLoaded', function() {
+    // Debug: Log to confirm JavaScript is running
+    console.log('Tea Insight Dashboard JavaScript loaded successfully!');
+    
+    // Show debug indicator
+    const debugIndicator = document.getElementById('debugIndicator');
+    if (debugIndicator) {
+        debugIndicator.classList.remove('hidden');
+        debugIndicator.textContent = 'JS Loaded ✓';
+    }
+    
     // Dark Mode Toggle
     const darkModeToggle = document.createElement('button');
     darkModeToggle.className = 'flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 hover:bg-primary/20 transition-colors text-primary dark:text-white';
@@ -713,9 +725,12 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     // Brew Prediction Button - Enhanced with prediction logic
-    const brewButton = document.querySelector('button:has(.kettle)');
+    const brewButton = document.querySelector('button.bg-gradient-to-r.from-primary.to-leaf');
+    console.log('Brew button found?', !!brewButton);
     if (brewButton) {
+        console.log('Adding click event listener to brew button');
         brewButton.addEventListener('click', function() {
+            console.log('Brew button clicked!');
             const originalText = this.querySelector('span:not(.material-symbols-outlined)').textContent;
             const icon = this.querySelector('.material-symbols-outlined');
             
@@ -726,6 +741,7 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Simulate API call with calculation
             setTimeout(() => {
+                console.log('Calling updatePredictionDisplay');
                 // Calculate and display prediction results
                 if (typeof updatePredictionDisplay === 'function') {
                     updatePredictionDisplay();
@@ -1042,6 +1058,108 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
+    // Update all dashboard visualizations based on prediction results
+    function updateDashboardVisualizations(results) {
+        console.log('updateDashboardVisualizations called with results:', results);
+        
+        // Visual indicator - add a temporary flash to confirm function is called
+        const visualIndicator = document.createElement('div');
+        visualIndicator.id = 'visualUpdateIndicator';
+        visualIndicator.style.position = 'fixed';
+        visualIndicator.style.top = '10px';
+        visualIndicator.style.right = '10px';
+        visualIndicator.style.backgroundColor = '#4CAF50';
+        visualIndicator.style.color = 'white';
+        visualIndicator.style.padding = '5px 10px';
+        visualIndicator.style.borderRadius = '4px';
+        visualIndicator.style.zIndex = '9999';
+        visualIndicator.style.fontSize = '12px';
+        visualIndicator.textContent = `Visualizations Updated: ${results.churnProbability}%`;
+        document.body.appendChild(visualIndicator);
+        
+        // Remove indicator after 3 seconds
+        setTimeout(() => {
+            if (visualIndicator.parentNode) {
+                visualIndicator.parentNode.removeChild(visualIndicator);
+            }
+        }, 3000);
+        
+        // Update pie chart (circular chart) in classification analysis
+        const pieChartNumber = document.querySelector('.col-span-6 .glass-card .text-5xl.font-extrabold.text-primary');
+        console.log('pieChartNumber found?', !!pieChartNumber);
+        if (pieChartNumber) {
+            pieChartNumber.textContent = `${results.churnProbability}%`;
+            // Add visual feedback
+            pieChartNumber.style.transition = 'all 0.3s';
+            pieChartNumber.style.backgroundColor = '#e8f5e8';
+            pieChartNumber.style.padding = '5px 10px';
+            pieChartNumber.style.borderRadius = '8px';
+            setTimeout(() => {
+                pieChartNumber.style.backgroundColor = '';
+                pieChartNumber.style.padding = '';
+                pieChartNumber.style.borderRadius = '';
+            }, 1000);
+            console.log('Updated pie chart to', `${results.churnProbability}%`);
+        }
+        
+        // Update group label below pie chart
+        const groupLabel = document.querySelector('.col-span-6 .glass-card .text-sm.font-bold.text-primary.bg-primary\\/10');
+        console.log('groupLabel found?', !!groupLabel);
+        if (groupLabel) {
+            groupLabel.textContent = results.customerGroup;
+            console.log('Updated group label to', results.customerGroup);
+        }
+        
+        // Update radar chart (pentagon) - adjust fill opacity based on churn probability
+        const radarPolygon = document.querySelector('.col-span-6 .glass-card svg polygon[fill="rgba(58, 105, 78, 0.3)"]');
+        console.log('radarPolygon found?', !!radarPolygon);
+        if (radarPolygon) {
+            // Adjust opacity based on churn probability (higher churn = more red tint)
+            const opacity = Math.max(0.1, Math.min(0.8, results.churnProbability / 100));
+            radarPolygon.setAttribute('fill', `rgba(58, 105, 78, ${opacity})`);
+            console.log('Updated radar polygon opacity to', opacity);
+        }
+        
+        // Update the four dashboard cards at the top
+        // 1. High-Risk Count - could increase based on churn probability
+        const highRiskCount = document.querySelector('.grid.grid-cols-4 .glass-card:nth-child(1) .text-3xl.font-extrabold');
+        console.log('highRiskCount found?', !!highRiskCount);
+        if (highRiskCount && !highRiskCount.textContent.includes('¥')) {
+            // Simulate a small increase based on churn probability
+            const baseCount = 124;
+            const additional = Math.floor(results.churnProbability / 10);
+            highRiskCount.textContent = baseCount + additional;
+            console.log('Updated high-risk count to', baseCount + additional);
+        }
+        
+        // 2. Churn Rate card (already updated by mainChurnDisplay)
+        const churnRateCard = document.querySelector('.grid.grid-cols-4 .glass-card:nth-child(2) .text-3xl.font-extrabold');
+        console.log('churnRateCard found?', !!churnRateCard);
+        if (churnRateCard) {
+            churnRateCard.textContent = `${results.churnProbability}%`;
+            console.log('Updated churn rate card to', `${results.churnProbability}%`);
+        }
+        
+        // 3. Group 1 Revenue - adjust based on spending
+        const groupRevenueCard = document.querySelector('.grid.grid-cols-4 .glass-card:nth-child(3) .text-3xl.font-extrabold');
+        console.log('groupRevenueCard found?', !!groupRevenueCard);
+        if (groupRevenueCard) {
+            // Calculate revenue percentage based on spending (simplified)
+            const spending = parseFloat(document.querySelector('input[type="number"]').value) || 0;
+            const revenuePercent = Math.min(80, Math.max(10, Math.floor(spending / 100)));
+            groupRevenueCard.textContent = `${revenuePercent}%`;
+            console.log('Updated group revenue to', `${revenuePercent}%`);
+        }
+        
+        // 4. Potential Recovery - update with calculated recovery value
+        const recoveryCard = document.querySelector('.grid.grid-cols-4 .glass-card:nth-child(4) .text-3xl.font-extrabold');
+        console.log('recoveryCard found?', !!recoveryCard);
+        if (recoveryCard) {
+            recoveryCard.textContent = `¥${results.recoveryValue.toLocaleString()}`;
+            console.log('Updated recovery card to', `¥${results.recoveryValue.toLocaleString()}`);
+        }
+    }
+    
     function updatePredictionDisplay() {
         console.log('updatePredictionDisplay called');
         const results = calculateChurnPrediction();
@@ -1088,6 +1206,9 @@ document.addEventListener('DOMContentLoaded', function() {
             if (mainChurnDisplay && mainChurnDisplay.textContent.includes('30.1')) {
                 mainChurnDisplay.textContent = `${results.churnProbability}%`;
             }
+            
+            // Update all dashboard visualizations (pie chart, radar chart, cards)
+            updateDashboardVisualizations(results);
             
             // Show warnings if any non-blocking errors
             if (results.errors && results.errors.length > 0) {
