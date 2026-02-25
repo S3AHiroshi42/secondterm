@@ -384,6 +384,56 @@ input[type=range]::-moz-range-thumb {
 <span class="material-symbols-outlined relative z-10 group-hover:-translate-y-1 transition-transform">kettle</span>
 <span class="relative z-10">Brew Prediction</span>
 </button>
+
+<!-- Prediction Results Display -->
+<div id="predictionResults" class="mt-6 p-4 bg-gradient-to-br from-primary/5 to-leaf/5 rounded-xl border border-primary/10 hidden">
+<div class="flex items-center justify-between mb-3">
+<h3 class="text-sm font-bold text-primary flex items-center gap-2">
+<span class="material-symbols-outlined text-gold">insights</span>
+Prediction Results
+</h3>
+<span class="text-xs font-bold text-gold bg-white/80 px-2 py-1 rounded-full">Live</span>
+</div>
+
+<div class="space-y-4">
+<div class="grid grid-cols-2 gap-3">
+<div class="bg-white/60 p-3 rounded-lg border border-primary/10">
+<p class="text-[10px] font-bold text-primary/60 uppercase">Churn Risk</p>
+<p class="text-xl font-extrabold text-primary mt-1"><span id="churnRiskValue">--</span>%</p>
+<div class="h-2 bg-primary/10 rounded-full mt-2 overflow-hidden">
+<div id="churnRiskBar" class="h-full bg-primary rounded-full" style="width: 0%"></div>
+</div>
+</div>
+<div class="bg-white/60 p-3 rounded-lg border border-primary/10">
+<p class="text-[10px] font-bold text-primary/60 uppercase">Customer Group</p>
+<p class="text-sm font-bold text-primary mt-1" id="customerGroup">--</p>
+<div class="flex items-center gap-1 mt-2">
+<span id="groupIndicator" class="w-2 h-2 rounded-full bg-primary/30"></span>
+<span class="text-[10px] text-primary/60" id="groupDescription">Enter data to see group</span>
+</div>
+</div>
+</div>
+
+<div class="bg-white/70 p-3 rounded-lg border border-gold/20">
+<p class="text-[10px] font-bold text-primary/60 uppercase mb-2 flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">recommend</span>
+Recommended Action
+</p>
+<p class="text-sm text-primary font-medium" id="recommendedAction">Complete the form and click "Brew Prediction" to see personalized recommendations.</p>
+</div>
+
+<div class="flex items-center justify-between text-xs text-primary/60">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">history</span>
+<span>Last updated: <span id="lastUpdated">--</span></span>
+</div>
+<button id="refreshPrediction" class="text-[10px] font-bold text-primary hover:text-gold transition-colors flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">refresh</span>
+Refresh
+</button>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -662,7 +712,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Brew Prediction Button
+    // Brew Prediction Button - Enhanced with prediction logic
     const brewButton = document.querySelector('button:has(.kettle)');
     if (brewButton) {
         brewButton.addEventListener('click', function() {
@@ -674,8 +724,13 @@ document.addEventListener('DOMContentLoaded', function() {
             icon.textContent = 'hourglass_top';
             this.disabled = true;
             
-            // Simulate API call
+            // Simulate API call with calculation
             setTimeout(() => {
+                // Calculate and display prediction results
+                if (typeof updatePredictionDisplay === 'function') {
+                    updatePredictionDisplay();
+                }
+                
                 this.querySelector('span:not(.material-symbols-outlined)').textContent = 'Prediction Complete!';
                 icon.textContent = 'check_circle';
                 
@@ -685,7 +740,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     icon.textContent = 'kettle';
                     this.disabled = false;
                 }, 3000);
-            }, 2000);
+            }, 1500);
         });
     }
     
@@ -781,6 +836,316 @@ document.addEventListener('DOMContentLoaded', function() {
     
     window.addEventListener('resize', handleResize);
     handleResize(); // Initial check
+    
+    // Customer Data Entry Prediction Logic with Validation
+    function calculateChurnPrediction() {
+        // Get form values
+        const spendingInput = document.querySelector('input[type="number"]');
+        const frequencySlider = document.querySelector('input[type="range"]');
+        const teaSelect = document.querySelector('select');
+        const satisfactionButtons = document.querySelectorAll('.flex.gap-2 button');
+        
+        // Debug logging
+        console.log('Validation: spendingInput.value =', spendingInput.value);
+        
+        // Clear previous validation errors
+        clearValidationErrors();
+        
+        // Validation flags
+        let hasErrors = false;
+        const errors = [];
+        
+        // Validate spending amount
+        let spending = parseFloat(spendingInput.value);
+        console.log('Validation: parsed spending =', spending, 'isNaN?', isNaN(spending), 'spending < 0?', spending < 0);
+        if (isNaN(spending) || spending < 0) {
+            console.log('Validation: spending error triggered');
+            addValidationError(spendingInput, 'Please enter a valid positive spending amount');
+            hasErrors = true;
+            errors.push('Invalid spending amount');
+            spending = 0;
+        } else if (spending > 100000) {
+            addValidationError(spendingInput, 'Spending amount seems unusually high. Please verify.');
+            // Not a blocking error, just a warning
+            errors.push('High spending amount detected');
+        }
+        
+        // Validate frequency (range slider should already be valid)
+        let frequency = parseInt(frequencySlider.value);
+        if (isNaN(frequency) || frequency < 1 || frequency > 30) {
+            addValidationError(frequencySlider, 'Visit frequency must be between 1-30');
+            hasErrors = true;
+            errors.push('Invalid visit frequency');
+            frequency = 14;
+        }
+        
+        // Validate tea type
+        let teaType = teaSelect.value;
+        const validTeaTypes = ['Premium Pu\'er (Aged)', 'Dragon Well (Longjing)', 'Da Hong Pao (Wuyi Rock)', 'Iron Goddess (Tieguanyin)'];
+        if (!validTeaTypes.includes(teaType)) {
+            addValidationError(teaSelect, 'Please select a valid tea type');
+            hasErrors = true;
+            errors.push('Invalid tea type selection');
+            teaType = validTeaTypes[0];
+        }
+        
+        // Validate satisfaction score
+        let satisfaction = 3; // Default
+        let satisfactionSelected = false;
+        satisfactionButtons.forEach((button, index) => {
+            if (button.classList.contains('border-primary') &&
+                button.classList.contains('bg-primary')) {
+                satisfaction = index + 1;
+                satisfactionSelected = true;
+            }
+        });
+        
+        if (!satisfactionSelected) {
+            // Highlight satisfaction buttons to indicate selection needed
+            satisfactionButtons.forEach(button => {
+                button.classList.add('ring-2', 'ring-red-300');
+            });
+            errors.push('Please select a satisfaction score');
+            // Not a blocking error for calculation, use default
+        } else {
+            // Remove any warning rings
+            satisfactionButtons.forEach(button => {
+                button.classList.remove('ring-2', 'ring-red-300');
+            });
+        }
+        
+        // If there are blocking errors, return early with error info
+        if (hasErrors) {
+            return {
+                hasErrors: true,
+                errors: errors,
+                churnProbability: 0,
+                customerGroup: 'Validation Error',
+                groupColor: '#dc2626',
+                groupDescription: 'Please fix the form errors above',
+                recommendedAction: 'Correct the highlighted fields and try again.',
+                recoveryValue: 0,
+                lastUpdated: new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})
+            };
+        }
+        
+        // Calculate churn probability (simplified algorithm)
+        // Base churn rate: 30%
+        let churnProbability = 30;
+        
+        // Adjust based on spending (higher spending = lower churn)
+        if (spending > 5000) churnProbability -= 15;
+        else if (spending > 2000) churnProbability -= 10;
+        else if (spending > 500) churnProbability -= 5;
+        else if (spending === 0) churnProbability += 10;
+        
+        // Adjust based on visit frequency
+        if (frequency > 20) churnProbability -= 12;
+        else if (frequency > 10) churnProbability -= 8;
+        else if (frequency < 5) churnProbability += 15;
+        
+        // Adjust based on satisfaction
+        if (satisfaction === 5) churnProbability -= 10;
+        else if (satisfaction === 4) churnProbability -= 5;
+        else if (satisfaction === 2) churnProbability += 5;
+        else if (satisfaction === 1) churnProbability += 15;
+        
+        // Adjust based on tea type preference
+        const teaTypeFactors = {
+            'Premium Pu\'er (Aged)': -8,  // Loyal customers
+            'Dragon Well (Longjing)': -5,
+            'Da Hong Pao (Wuyi Rock)': -3,
+            'Iron Goddess (Tieguanyin)': 0
+        };
+        churnProbability += teaTypeFactors[teaType] || 0;
+        
+        // Ensure churn probability is between 5% and 95%
+        churnProbability = Math.max(5, Math.min(95, churnProbability));
+        
+        // Determine customer group
+        let customerGroup, groupColor, groupDescription;
+        if (churnProbability < 20) {
+            customerGroup = 'Group 1: Loyal';
+            groupColor = '#6B9E7A'; // leaf color
+            groupDescription = 'High-value loyal customer';
+        } else if (churnProbability < 40) {
+            customerGroup = 'Group 2: Stable';
+            groupColor = '#3a694e'; // primary color
+            groupDescription = 'Stable with moderate risk';
+        } else if (churnProbability < 60) {
+            customerGroup = 'Group 3: At Risk';
+            groupColor = '#D4A017'; // gold color
+            groupDescription = 'Requires attention';
+        } else {
+            customerGroup = 'Group 4: Critical';
+            groupColor = '#dc2626'; // red color
+            groupDescription = 'High churn risk - immediate action needed';
+        }
+        
+        // Generate recommended action
+        let recommendedAction;
+        if (churnProbability < 25) {
+            recommendedAction = 'Maintain current engagement. Consider offering exclusive tea tasting events to reinforce loyalty.';
+        } else if (churnProbability < 45) {
+            recommendedAction = 'Send personalized tea recommendations based on their preference. Offer a 10% discount on next purchase.';
+        } else if (churnProbability < 65) {
+            recommendedAction = 'Schedule a follow-up call from our tea specialist. Offer a complimentary tea sample with next order.';
+        } else {
+            recommendedAction = 'Immediate intervention required. Offer a 20% discount and invite to exclusive tea ceremony. Assign to retention specialist.';
+        }
+        
+        // Calculate potential recovery value
+        const recoveryValue = Math.round(spending * 12 * (churnProbability / 100) * 0.7);
+        
+        return {
+            hasErrors: false,
+            errors: errors.length > 0 ? errors : null,
+            churnProbability: Math.round(churnProbability),
+            customerGroup,
+            groupColor,
+            groupDescription,
+            recommendedAction,
+            recoveryValue,
+            lastUpdated: new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})
+        };
+    }
+    
+    // Helper functions for validation UI
+    function addValidationError(inputElement, message) {
+        // Add error styling
+        inputElement.classList.add('border-red-400', 'bg-red-50');
+        inputElement.classList.remove('border-primary/20', 'bg-white/50');
+        
+        // Create or update error message
+        let errorElement = inputElement.parentNode.querySelector('.validation-error');
+        if (!errorElement) {
+            errorElement = document.createElement('div');
+            errorElement.className = 'validation-error text-xs text-red-500 mt-1 flex items-center gap-1';
+            inputElement.parentNode.appendChild(errorElement);
+        }
+        errorElement.innerHTML = `<span class="material-symbols-outlined text-xs">error</span> ${message}`;
+    }
+    
+    function clearValidationErrors() {
+        // Clear all validation errors
+        document.querySelectorAll('.validation-error').forEach(el => el.remove());
+        
+        // Reset input styles
+        document.querySelectorAll('input, select').forEach(input => {
+            input.classList.remove('border-red-400', 'bg-red-50');
+            input.classList.add('border-primary/20', 'bg-white/50');
+        });
+        
+        // Remove satisfaction button warning rings
+        document.querySelectorAll('.flex.gap-2 button').forEach(button => {
+            button.classList.remove('ring-2', 'ring-red-300');
+        });
+    }
+    
+    function updatePredictionDisplay() {
+        console.log('updatePredictionDisplay called');
+        const results = calculateChurnPrediction();
+        console.log('Validation results:', results);
+        const resultsElement = document.getElementById('predictionResults');
+        
+        // Show results section (even if there are errors, to display them)
+        resultsElement.classList.remove('hidden');
+        
+        // Handle validation errors
+        if (results.hasErrors) {
+            console.log('Validation errors detected:', results.errors);
+            // Show error state in results display
+            resultsElement.classList.add('border-red-300', 'bg-red-50/30');
+            resultsElement.classList.remove('border-primary/10', 'bg-gradient-to-br');
+            
+            // Update with error information
+            document.getElementById('churnRiskValue').textContent = '--';
+            document.getElementById('churnRiskBar').style.width = '0%';
+            document.getElementById('customerGroup').textContent = 'Validation Error';
+            document.getElementById('groupDescription').textContent = results.errors.join(', ');
+            document.getElementById('groupIndicator').style.backgroundColor = '#dc2626';
+            document.getElementById('recommendedAction').textContent = results.recommendedAction;
+            document.getElementById('lastUpdated').textContent = results.lastUpdated;
+            
+            // Don't update main dashboard
+            return;
+        } else {
+            // Reset error styling
+            resultsElement.classList.remove('border-red-300', 'bg-red-50/30');
+            resultsElement.classList.add('border-primary/10', 'bg-gradient-to-br', 'from-primary/5', 'to-leaf/5');
+            
+            // Update with prediction results
+            document.getElementById('churnRiskValue').textContent = results.churnProbability;
+            document.getElementById('churnRiskBar').style.width = `${results.churnProbability}%`;
+            document.getElementById('customerGroup').textContent = results.customerGroup;
+            document.getElementById('groupDescription').textContent = results.groupDescription;
+            document.getElementById('groupIndicator').style.backgroundColor = results.groupColor;
+            document.getElementById('recommendedAction').textContent = results.recommendedAction;
+            document.getElementById('lastUpdated').textContent = results.lastUpdated;
+            
+            // Also update the main dashboard visualization if needed
+            const mainChurnDisplay = document.querySelector('.text-5xl.font-extrabold.text-primary');
+            if (mainChurnDisplay && mainChurnDisplay.textContent.includes('30.1')) {
+                mainChurnDisplay.textContent = `${results.churnProbability}%`;
+            }
+            
+            // Show warnings if any non-blocking errors
+            if (results.errors && results.errors.length > 0) {
+                const warningElement = document.createElement('div');
+                warningElement.className = 'mt-3 p-2 bg-yellow-50 border border-yellow-200 rounded text-xs text-yellow-800 flex items-center gap-1';
+                warningElement.innerHTML = `<span class="material-symbols-outlined text-sm">warning</span> Note: ${results.errors.join(', ')}`;
+                
+                // Remove any existing warning
+                const existingWarning = resultsElement.querySelector('.warning-note');
+                if (existingWarning) existingWarning.remove();
+                
+                warningElement.classList.add('warning-note');
+                resultsElement.querySelector('.space-y-4').prepend(warningElement);
+            } else {
+                // Remove any existing warning
+                const existingWarning = resultsElement.querySelector('.warning-note');
+                if (existingWarning) existingWarning.remove();
+            }
+        }
+    }
+    
+    // Real-time updates on form changes
+    const formInputs = document.querySelectorAll('#predictionResults ~ .p-6 input, #predictionResults ~ .p-6 select, #predictionResults ~ .p-6 button');
+    formInputs.forEach(input => {
+        if (input.type === 'range' || input.tagName === 'SELECT') {
+            input.addEventListener('change', () => {
+                if (document.getElementById('predictionResults') &&
+                    !document.getElementById('predictionResults').classList.contains('hidden')) {
+                    updatePredictionDisplay();
+                }
+            });
+        }
+    });
+    
+    // Refresh prediction button
+    const refreshButton = document.getElementById('refreshPrediction');
+    if (refreshButton) {
+        refreshButton.addEventListener('click', () => {
+            refreshButton.querySelector('.material-symbols-outlined').classList.add('rotate-180');
+            updatePredictionDisplay();
+            setTimeout(() => {
+                refreshButton.querySelector('.material-symbols-outlined').classList.remove('rotate-180');
+            }, 500);
+        });
+    }
+    
+    // Auto-calculate when satisfaction score changes
+    const satisfactionButtons = document.querySelectorAll('.flex.gap-2 button');
+    satisfactionButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            setTimeout(() => {
+                if (document.getElementById('predictionResults') &&
+                    !document.getElementById('predictionResults').classList.contains('hidden')) {
+                    updatePredictionDisplay();
+                }
+            }, 100);
+        });
+    });
     
     console.log('Tea Insight Dashboard initialized successfully!');
 });
