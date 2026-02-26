@@ -231,36 +231,28 @@ input[type=range]::-moz-range-thumb {
 <h1 class="text-xl font-extrabold tracking-tight text-balance">TEA INSIGHT</h1>
 </div>
 <nav class="flex gap-8">
-<a class="text-sm font-semibold border-b-2 border-gold pb-1 flex items-center gap-2" href="#">
-<span class="material-symbols-outlined text-sm">water_drop</span>
-                    Single Assessment
-                </a>
-<a class="text-sm font-medium opacity-80 hover:opacity-100 transition-opacity flex items-center gap-2" href="#">
-<span class="material-symbols-outlined text-sm">dataset</span>
-                    Batch Analysis
-                </a>
-<a class="text-sm font-medium opacity-80 hover:opacity-100 transition-opacity flex items-center gap-2" href="#">
-<span class="material-symbols-outlined text-sm">monetization_on</span>
-                    Revenue Insights
-                </a>
+    <a class="text-sm font-semibold border-b-2 border-gold pb-1 flex items-center gap-2" href="#">
+        <span class="material-symbols-outlined text-sm">water_drop</span>
+        Single Assessment
+    </a>
+    <a id="customerDatabaseBtn" class="text-sm font-medium opacity-80 hover:opacity-100 transition-opacity flex items-center gap-2 cursor-pointer">
+        <span class="material-symbols-outlined text-sm">database</span>
+        Customer Database
+    </a>
 </nav>
 </div>
 <div class="flex items-center gap-6">
-<div class="relative group">
-<span class="material-symbols-outlined absolute left-3 top-2 text-primary/60">search</span>
-<input class="bg-white/10 border-none rounded-full pl-10 pr-4 py-2 text-sm focus:ring-2 focus:ring-gold w-64 placeholder:text-white/50 backdrop-blur-sm" placeholder="Search customer ID..." type="text"/>
-</div>
-<button class="relative p-2 rounded-full hover:bg-white/10 transition-colors">
-<span class="material-symbols-outlined">notifications</span>
-<span class="absolute top-2 right-2 w-2 h-2 bg-gold rounded-full border-2 border-primary"></span>
-</button>
-<div class="flex items-center gap-3 border-l border-white/20 pl-6">
-<div class="text-right">
-<p class="text-xs opacity-70">Chief Tea Master</p>
-<p class="text-sm font-bold">Lao Wang</p>
-</div>
-<img alt="User Profile" class="w-10 h-10 rounded-full border-2 border-gold object-cover" data-alt="Portrait of a professional analyst in a suit" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100'><rect width='100' height='100' fill='%233a694e'/><circle cx='50' cy='40' r='20' fill='%23f8f6f3'/><circle cx='50' cy='80' r='30' fill='%23f8f6f3'/></svg>" loading="lazy"/>
-</div>
+    <button class="relative p-2 rounded-full hover:bg-white/10 transition-colors">
+        <span class="material-symbols-outlined">notifications</span>
+        <span class="absolute top-2 right-2 w-2 h-2 bg-gold rounded-full border-2 border-primary"></span>
+    </button>
+    <div class="flex items-center gap-3 border-l border-white/20 pl-6">
+        <div class="text-right">
+            <p class="text-xs opacity-70">Chief Tea Master</p>
+            <p class="text-sm font-bold">Lao Wang</p>
+        </div>
+        <img alt="User Profile" class="w-10 h-10 rounded-full border-2 border-gold object-cover" data-alt="Portrait of a professional analyst in a suit" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100'><rect width='100' height='100' fill='%233a694e'/><circle cx='50' cy='40' r='20' fill='%23f8f6f3'/><circle cx='50' cy='80' r='30' fill='%23f8f6f3'/></svg>" loading="lazy"/>
+    </div>
 </div>
 </div>
 </header>
@@ -295,16 +287,16 @@ input[type=range]::-moz-range-thumb {
 <span>+5.2%</span>
 </div>
 </div>
-<div class="glass-card p-6 rounded-xl relative overflow-hidden group hover:shadow-md transition-all border-t-4 border-gold bg-gradient-to-b from-white/80 to-transparent">
-<span class="material-symbols-outlined absolute -right-4 -bottom-4 text-primary/10 text-8xl rotate-12 transition-transform group-hover:rotate-45">query_stats</span>
-<p class="text-sm text-primary/60 font-semibold mb-1 uppercase tracking-wider flex items-center gap-1">
-<span class="material-symbols-outlined text-base">analytics</span> Churn Rate
-            </p>
-<h3 class="text-3xl font-extrabold text-primary font-display">30.1%</h3>
-<div class="flex items-center gap-1 mt-2 text-primary text-sm font-bold bg-primary/5 w-fit px-2 py-0.5 rounded-full">
-<span class="material-symbols-outlined text-sm">trending_down</span>
-<span>-2.1%</span>
-</div>
+<div class="glass-card p-6 rounded-xl relative overflow-hidden group hover:shadow-md transition-all border-b-2 border-transparent hover:border-primary/20">
+    <span class="material-symbols-outlined absolute -right-4 -bottom-4 text-primary/10 text-8xl rotate-12 transition-transform group-hover:rotate-45">query_stats</span>
+    <p class="text-sm text-primary/60 font-semibold mb-1 uppercase tracking-wider flex items-center gap-1">
+        <span class="material-symbols-outlined text-base">analytics</span> Churn Rate
+    </p>
+    <h3 class="text-3xl font-extrabold text-primary font-display">30.1%</h3>
+    <div class="flex items-center gap-1 mt-2 text-primary text-sm font-bold bg-primary/5 w-fit px-2 py-0.5 rounded-full">
+        <span class="material-symbols-outlined text-sm">trending_down</span>
+        <span>-2.1%</span>
+    </div>
 </div>
 <div class="glass-card p-6 rounded-xl relative overflow-hidden group hover:shadow-md transition-all border-b-2 border-transparent hover:border-primary/20">
 <span class="material-symbols-outlined absolute -right-4 -bottom-4 text-primary/10 text-8xl rotate-12 transition-transform group-hover:rotate-45">payments</span>
@@ -317,16 +309,16 @@ input[type=range]::-moz-range-thumb {
 <span>Critical Share</span>
 </div>
 </div>
-<div class="glass-card glass-card-enhanced p-6 rounded-xl relative overflow-hidden group hover:shadow-md transition-all border-b-2 border-transparent hover:border-primary/20 animate-float">
-<span class="material-symbols-outlined absolute -right-4 -bottom-4 text-primary/10 text-8xl rotate-12 transition-transform group-hover:rotate-45">savings</span>
-<p class="text-sm text-primary/60 font-semibold mb-1 uppercase tracking-wider flex items-center gap-1">
-<span class="material-symbols-outlined text-base">add_task</span> Potential Recovery
-            </p>
-<h3 class="text-3xl font-extrabold text-primary font-display">¥280,000</h3>
-<div class="flex items-center gap-1 mt-2 text-primary text-sm font-bold bg-primary/5 w-fit px-2 py-0.5 rounded-full">
-<span class="material-symbols-outlined text-sm">add_circle</span>
-<span>+12.5% Target</span>
-</div>
+<div class="glass-card glass-card-enhanced p-6 rounded-xl relative overflow-hidden group hover:shadow-md transition-all border-b-2 border-transparent hover:border-primary/20">
+    <span class="material-symbols-outlined absolute -right-4 -bottom-4 text-primary/10 text-8xl rotate-12 transition-transform group-hover:rotate-45">savings</span>
+    <p class="text-sm text-primary/60 font-semibold mb-1 uppercase tracking-wider flex items-center gap-1">
+        <span class="material-symbols-outlined text-base">add_task</span> Potential Recovery
+    </p>
+    <h3 class="text-3xl font-extrabold text-primary font-display">¥280,000</h3>
+    <div class="flex items-center gap-1 mt-2 text-primary text-sm font-bold bg-primary/5 w-fit px-2 py-0.5 rounded-full">
+        <span class="material-symbols-outlined text-sm">add_circle</span>
+        <span>+12.5% Target</span>
+    </div>
 </div>
 </div>
 <div class="grid grid-cols-12 gap-6 items-start">
@@ -340,15 +332,24 @@ input[type=range]::-moz-range-thumb {
                     </h2>
 </div>
 <div class="p-6 space-y-6">
-<div class="space-y-2">
-<label class="text-xs font-bold text-primary/60 uppercase flex items-center gap-1">
-<span class="material-symbols-outlined text-sm">payments</span> Spending Amount (Monthly)
-                        </label>
-<div class="relative">
-<span class="absolute left-3 top-2.5 text-primary/40 font-serif">¥</span>
-<input class="w-full bg-white/50 border-primary/20 rounded-lg focus:ring-primary focus:border-primary pl-7 font-mono text-primary" placeholder="0.00" type="number"/>
-</div>
-</div>
+    <div class="space-y-2">
+        <label class="text-xs font-bold text-primary/60 uppercase flex items-center gap-1">
+            <span class="material-symbols-outlined text-sm">badge</span> Customer ID
+        </label>
+        <div class="relative">
+            <span class="absolute left-3 top-2.5 text-primary/40 font-serif">#</span>
+            <input id="customerIdInput" class="w-full bg-white/50 border-primary/20 rounded-lg focus:ring-primary focus:border-primary pl-7 font-mono text-primary" placeholder="e.g., CUST-001" type="text"/>
+        </div>
+    </div>
+    <div class="space-y-2">
+        <label class="text-xs font-bold text-primary/60 uppercase flex items-center gap-1">
+            <span class="material-symbols-outlined text-sm">payments</span> Spending Amount (Monthly)
+        </label>
+        <div class="relative">
+            <span class="absolute left-3 top-2.5 text-primary/40 font-serif">¥</span>
+            <input id="spendingInput" class="w-full bg-white/50 border-primary/20 rounded-lg focus:ring-primary focus:border-primary pl-7 font-mono text-primary" placeholder="0.00" type="number"/>
+        </div>
+    </div>
 <div class="space-y-2">
 <div class="flex justify-between items-center">
 <label class="text-xs font-bold text-primary/60 uppercase flex items-center gap-1">
@@ -425,14 +426,20 @@ Recommended Action
 </div>
 
 <div class="flex items-center justify-between text-xs text-primary/60">
-<div class="flex items-center gap-1">
-<span class="material-symbols-outlined text-sm">history</span>
-<span>Last updated: <span id="lastUpdated">--</span></span>
-</div>
-<button id="refreshPrediction" class="text-[10px] font-bold text-primary hover:text-gold transition-colors flex items-center gap-1">
-<span class="material-symbols-outlined text-sm">refresh</span>
-Refresh
-</button>
+    <div class="flex items-center gap-1">
+        <span class="material-symbols-outlined text-sm">history</span>
+        <span>Last updated: <span id="lastUpdated">--</span></span>
+    </div>
+    <div class="flex gap-2">
+        <button id="saveToDatabase" class="text-[10px] font-bold text-primary hover:text-gold transition-colors flex items-center gap-1">
+            <span class="material-symbols-outlined text-sm">save</span>
+            Save to DB
+        </button>
+        <button id="refreshPrediction" class="text-[10px] font-bold text-primary hover:text-gold transition-colors flex items-center gap-1">
+            <span class="material-symbols-outlined text-sm">refresh</span>
+            Refresh
+        </button>
+    </div>
 </div>
 </div>
 </div>
@@ -455,43 +462,58 @@ Refresh
 </div>
 <div class="grid grid-cols-2 gap-12 w-full mt-8 relative z-10">
 <div class="flex flex-col items-center gap-6">
-<div class="relative w-56 h-56 rounded-full border-[1px] border-primary/10 flex items-center justify-center bg-white/20 backdrop-blur-sm shadow-inner">
-<div class="absolute inset-2 rounded-full border-[1px] border-dashed border-primary/20"></div>
-<div class="absolute inset-0 rounded-full border-[16px] border-primary/10"></div>
-<div class="absolute inset-0 rounded-full border-[16px] border-gold border-t-transparent border-r-transparent rotate-[45deg] drop-shadow-lg"></div>
-<div class="text-center relative z-10">
-<span class="material-symbols-outlined text-gold/80 text-3xl mb-1 block animate-pulse">priority_high</span>
-<span class="text-5xl font-extrabold text-primary tracking-tighter">30.1%</span>
-<p class="text-[10px] text-primary/60 font-bold uppercase tracking-widest mt-1">Churn Probability</p>
-</div>
-</div>
+    <div class="relative w-56 h-56 rounded-full border-[1px] border-primary/10 flex items-center justify-center bg-white/20 backdrop-blur-sm shadow-inner">
+        <div class="absolute inset-2 rounded-full border-[1px] border-dashed border-primary/20"></div>
+        <div class="absolute inset-0 rounded-full border-[16px] border-primary/10"></div>
+        <!-- Pie chart visualization using conic-gradient -->
+        <div id="pieChartVisual" class="absolute inset-0 rounded-full" style="background: conic-gradient(#3a694e 0% 30.1%, rgba(58, 105, 78, 0.1) 30.1% 100%);"></div>
+        <div class="text-center relative z-10">
+            <span class="material-symbols-outlined text-gold/80 text-3xl mb-1 block animate-pulse">priority_high</span>
+            <span id="pieChartValue" class="text-5xl font-extrabold text-primary tracking-tighter">30.1%</span>
+            <p class="text-[10px] text-primary/60 font-bold uppercase tracking-widest mt-1">Churn Probability</p>
+        </div>
+    </div>
 <div class="flex items-center gap-2">
 <span class="w-2 h-2 bg-primary rounded-full animate-ping"></span>
 <p class="text-sm font-bold text-primary bg-primary/10 border border-primary/20 px-6 py-1.5 rounded-full uppercase tracking-widest shadow-sm">Group 1: At Risk</p>
 </div>
 </div>
 <div class="flex flex-col items-center justify-center gap-4">
-<div class="relative w-56 h-56 p-4">
-<span class="material-symbols-outlined absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[180px] text-leaf/5 rotate-12 pointer-events-none">eco</span>
-<svg class="w-full h-full text-primary/20 drop-shadow-md" viewBox="0 0 100 100">
-<polygon fill="white" fill-opacity="0.5" points="50,5 95,35 80,90 20,90 5,35" stroke="currentColor" stroke-width="0.5"></polygon>
-<polygon fill="none" points="50,20 80,45 70,80 30,80 20,45" stroke="currentColor" stroke-width="0.5"></polygon>
-<polygon fill="rgba(58, 105, 78, 0.3)" points="50,15 85,30 75,85 40,75 15,40" stroke="#3a694e" stroke-linejoin="round" stroke-width="2"></polygon>
-<circle cx="50" cy="15" fill="#D4A017" r="2"></circle>
-<circle cx="85" cy="30" fill="#D4A017" r="2"></circle>
-<circle cx="75" cy="85" fill="#D4A017" r="2"></circle>
-<circle cx="40" cy="75" fill="#D4A017" r="2"></circle>
-<circle cx="15" cy="40" fill="#D4A017" r="2"></circle>
-</svg>
-<div class="absolute top-0 left-1/2 -translate-x-1/2 text-[10px] font-bold text-primary bg-white/80 px-1 rounded shadow-sm">Spending</div>
-<div class="absolute bottom-0 left-1/2 -translate-x-1/2 text-[10px] font-bold text-primary bg-white/80 px-1 rounded shadow-sm">Loyalty</div>
-<div class="absolute top-1/3 right-0 text-[10px] font-bold text-primary bg-white/80 px-1 rounded shadow-sm">Frequency</div>
-<div class="absolute top-1/3 left-0 text-[10px] font-bold text-primary bg-white/80 px-1 rounded shadow-sm">Taste</div>
-</div>
-<p class="text-xs text-primary/60 italic text-center px-8 flex items-center gap-1">
-<span class="material-symbols-outlined text-sm">compare_arrows</span>
-                            Comparing to High-Value Averages
-                        </p>
+    <div class="relative w-56 h-56 p-4">
+        <span class="material-symbols-outlined absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[180px] text-leaf/5 rotate-12 pointer-events-none">eco</span>
+        <svg id="radarChart" class="w-full h-full text-primary/20 drop-shadow-md" viewBox="0 0 100 100">
+            <!-- Grid lines -->
+            <polygon fill="none" points="50,5 95,35 80,90 20,90 5,35" stroke="currentColor" stroke-width="0.5" stroke-opacity="0.3"></polygon>
+            <polygon fill="none" points="50,20 80,45 70,80 30,80 20,45" stroke="currentColor" stroke-width="0.5" stroke-opacity="0.3"></polygon>
+            <polygon fill="none" points="50,35 65,55 60,70 40,70 35,55" stroke="currentColor" stroke-width="0.5" stroke-opacity="0.3"></polygon>
+            
+            <!-- Axes -->
+            <line x1="50" y1="5" x2="50" y2="90" stroke="currentColor" stroke-width="0.5" stroke-opacity="0.2"></line>
+            <line x1="5" y1="35" x2="95" y2="35" stroke="currentColor" stroke-width="0.5" stroke-opacity="0.2"></line>
+            <line x1="20" y1="90" x2="80" y2="90" stroke="currentColor" stroke-width="0.5" stroke-opacity="0.2"></line>
+            <line x1="95" y1="35" x2="20" y2="90" stroke="currentColor" stroke-width="0.5" stroke-opacity="0.2"></line>
+            <line x1="5" y1="35" x2="80" y2="90" stroke="currentColor" stroke-width="0.5" stroke-opacity="0.2"></line>
+            
+            <!-- Customer data polygon (will be updated by JavaScript) -->
+            <polygon id="radarData" fill="rgba(58, 105, 78, 0.4)" stroke="#3a694e" stroke-linejoin="round" stroke-width="1.5" points="50,40 70,45 65,70 40,65 35,50"></polygon>
+            
+            <!-- Axis labels -->
+            <circle cx="50" cy="5" fill="#D4A017" r="2"></circle>
+            <circle cx="95" cy="35" fill="#D4A017" r="2"></circle>
+            <circle cx="80" cy="90" fill="#D4A017" r="2"></circle>
+            <circle cx="20" cy="90" fill="#D4A017" r="2"></circle>
+            <circle cx="5" cy="35" fill="#D4A017" r="2"></circle>
+        </svg>
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 text-[10px] font-bold text-primary bg-white/80 px-1 rounded shadow-sm">Spending</div>
+        <div class="absolute bottom-0 left-1/2 -translate-x-1/2 text-[10px] font-bold text-primary bg-white/80 px-1 rounded shadow-sm">Loyalty</div>
+        <div class="absolute top-1/3 right-0 text-[10px] font-bold text-primary bg-white/80 px-1 rounded shadow-sm">Frequency</div>
+        <div class="absolute top-1/3 left-0 text-[10px] font-bold text-primary bg-white/80 px-1 rounded shadow-sm">Satisfaction</div>
+        <div class="absolute top-0 right-1/4 text-[10px] font-bold text-primary bg-white/80 px-1 rounded shadow-sm">Tea Preference</div>
+    </div>
+    <p class="text-xs text-primary/60 italic text-center px-8 flex items-center gap-1">
+        <span class="material-symbols-outlined text-sm">compare_arrows</span>
+            Comparing to High-Value Averages
+    </p>
 </div>
 </div>
 </div>
@@ -1085,8 +1107,10 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 3000);
         
         // Update pie chart (circular chart) in classification analysis
-        const pieChartNumber = document.querySelector('.col-span-6 .glass-card .text-5xl.font-extrabold.text-primary');
+        const pieChartNumber = document.getElementById('pieChartValue');
+        const pieChartVisual = document.getElementById('pieChartVisual');
         console.log('pieChartNumber found?', !!pieChartNumber);
+        console.log('pieChartVisual found?', !!pieChartVisual);
         if (pieChartNumber) {
             pieChartNumber.textContent = `${results.churnProbability}%`;
             // Add visual feedback
@@ -1102,6 +1126,13 @@ document.addEventListener('DOMContentLoaded', function() {
             console.log('Updated pie chart to', `${results.churnProbability}%`);
         }
         
+        // Update pie chart visualization with conic-gradient
+        if (pieChartVisual) {
+            const percentage = results.churnProbability;
+            pieChartVisual.style.background = `conic-gradient(#3a694e 0% ${percentage}%, rgba(58, 105, 78, 0.1) ${percentage}% 100%)`;
+            console.log('Updated pie chart visualization to', percentage, '%');
+        }
+        
         // Update group label below pie chart
         const groupLabel = document.querySelector('.col-span-6 .glass-card .text-sm.font-bold.text-primary.bg-primary\\/10');
         console.log('groupLabel found?', !!groupLabel);
@@ -1110,14 +1141,88 @@ document.addEventListener('DOMContentLoaded', function() {
             console.log('Updated group label to', results.customerGroup);
         }
         
-        // Update radar chart (pentagon) - adjust fill opacity based on churn probability
-        const radarPolygon = document.querySelector('.col-span-6 .glass-card svg polygon[fill="rgba(58, 105, 78, 0.3)"]');
-        console.log('radarPolygon found?', !!radarPolygon);
-        if (radarPolygon) {
-            // Adjust opacity based on churn probability (higher churn = more red tint)
-            const opacity = Math.max(0.1, Math.min(0.8, results.churnProbability / 100));
-            radarPolygon.setAttribute('fill', `rgba(58, 105, 78, ${opacity})`);
-            console.log('Updated radar polygon opacity to', opacity);
+        // Update radar chart based on customer data
+        const radarDataPolygon = document.getElementById('radarData');
+        console.log('radarDataPolygon found?', !!radarDataPolygon);
+        if (radarDataPolygon) {
+            // Get form values for radar chart
+            const spendingInput = document.querySelector('input[type="number"]');
+            const frequencySlider = document.querySelector('input[type="range"]');
+            const teaSelect = document.querySelector('select');
+            const satisfactionButtons = document.querySelectorAll('.flex.gap-2 button');
+            
+            let spending = parseFloat(spendingInput.value) || 0;
+            let frequency = parseInt(frequencySlider.value) || 14;
+            let satisfaction = 3; // Default
+            
+            // Find selected satisfaction score
+            satisfactionButtons.forEach((button, index) => {
+                if (button.classList.contains('border-primary') && button.classList.contains('bg-primary')) {
+                    satisfaction = index + 1;
+                }
+            });
+            
+            // Tea type factor
+            const teaType = teaSelect.value;
+            const teaTypeFactors = {
+                'Premium Pu\'er (Aged)': 90,
+                'Dragon Well (Longjing)': 70,
+                'Da Hong Pao (Wuyi Rock)': 60,
+                'Iron Goddess (Tieguanyin)': 50
+            };
+            const teaPreference = teaTypeFactors[teaType] || 50;
+            
+            // Normalize values for radar chart (0-100 scale)
+            // Spending: 0-10000 -> 0-100
+            const spendingScore = Math.min(100, Math.max(0, (spending / 100) * 1));
+            // Frequency: 1-30 -> 0-100
+            const frequencyScore = Math.min(100, Math.max(0, ((frequency - 1) / 29) * 100));
+            // Satisfaction: 1-5 -> 0-100
+            const satisfactionScore = Math.min(100, Math.max(0, ((satisfaction - 1) / 4) * 100));
+            // Tea preference: already 0-100
+            const teaPreferenceScore = teaPreference;
+            // Loyalty (derived from frequency and satisfaction)
+            const loyaltyScore = (frequencyScore * 0.6 + satisfactionScore * 0.4);
+            
+            // Convert scores to radar coordinates (pentagon vertices)
+            // Vertices: top (Spending), top-right (Frequency), bottom-right (Loyalty), bottom-left (Satisfaction), top-left (Tea Preference)
+            // Coordinate system: center (50,50), radius based on score
+            
+            const centerX = 50;
+            const centerY = 50;
+            const maxRadius = 45;
+            
+            // Calculate coordinates for each axis
+            const spendingCoord = {
+                x: centerX,
+                y: centerY - (spendingScore / 100 * maxRadius)
+            };
+            
+            const frequencyCoord = {
+                x: centerX + (frequencyScore / 100 * maxRadius * Math.cos(54 * Math.PI / 180)),
+                y: centerY - (frequencyScore / 100 * maxRadius * Math.sin(54 * Math.PI / 180))
+            };
+            
+            const loyaltyCoord = {
+                x: centerX + (loyaltyScore / 100 * maxRadius * Math.cos(18 * Math.PI / 180)),
+                y: centerY + (loyaltyScore / 100 * maxRadius * Math.sin(18 * Math.PI / 180))
+            };
+            
+            const satisfactionCoord = {
+                x: centerX - (satisfactionScore / 100 * maxRadius * Math.cos(18 * Math.PI / 180)),
+                y: centerY + (satisfactionScore / 100 * maxRadius * Math.sin(18 * Math.PI / 180))
+            };
+            
+            const teaPreferenceCoord = {
+                x: centerX - (teaPreferenceScore / 100 * maxRadius * Math.cos(54 * Math.PI / 180)),
+                y: centerY - (teaPreferenceScore / 100 * maxRadius * Math.sin(54 * Math.PI / 180))
+            };
+            
+            // Create polygon points string
+            const points = `${spendingCoord.x},${spendingCoord.y} ${frequencyCoord.x},${frequencyCoord.y} ${loyaltyCoord.x},${loyaltyCoord.y} ${satisfactionCoord.x},${satisfactionCoord.y} ${teaPreferenceCoord.x},${teaPreferenceCoord.y}`;
+            
+            radarDataPolygon.setAttribute('points', points);
+            console.log('Updated radar chart with points:', points);
         }
         
         // Update the four dashboard cards at the top
@@ -1230,19 +1335,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    // Real-time updates on form changes
-    const formInputs = document.querySelectorAll('#predictionResults ~ .p-6 input, #predictionResults ~ .p-6 select, #predictionResults ~ .p-6 button');
-    formInputs.forEach(input => {
-        if (input.type === 'range' || input.tagName === 'SELECT') {
-            input.addEventListener('change', () => {
-                if (document.getElementById('predictionResults') &&
-                    !document.getElementById('predictionResults').classList.contains('hidden')) {
-                    updatePredictionDisplay();
-                }
-            });
-        }
-    });
-    
     // Refresh prediction button
     const refreshButton = document.getElementById('refreshPrediction');
     if (refreshButton) {
@@ -1255,21 +1347,360 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Auto-calculate when satisfaction score changes
-    const satisfactionButtons = document.querySelectorAll('.flex.gap-2 button');
-    satisfactionButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            setTimeout(() => {
-                if (document.getElementById('predictionResults') &&
-                    !document.getElementById('predictionResults').classList.contains('hidden')) {
-                    updatePredictionDisplay();
-                }
-            }, 100);
+    // Customer Database Functionality
+    const customerDatabaseBtn = document.getElementById('customerDatabaseBtn');
+    const customerDatabaseModal = document.getElementById('customerDatabaseModal');
+    const closeDatabaseModal = document.getElementById('closeDatabaseModal');
+    const saveToDatabaseBtn = document.getElementById('saveToDatabase');
+    const databaseSearchInput = document.getElementById('databaseSearchInput');
+    const databaseTableBody = document.getElementById('databaseTableBody');
+    const noDataRow = document.getElementById('noDataRow');
+    const databaseStats = document.getElementById('databaseStats');
+    const clearDatabaseBtn = document.getElementById('clearDatabase');
+    
+    // Initialize customer database in localStorage
+    let customerDatabase = JSON.parse(localStorage.getItem('teaInsightCustomerDatabase')) || [];
+    
+    // Open customer database modal
+    if (customerDatabaseBtn) {
+        customerDatabaseBtn.addEventListener('click', function() {
+            customerDatabaseModal.classList.remove('hidden');
+            customerDatabaseModal.classList.add('flex');
+            updateDatabaseTable();
         });
+    }
+    
+    // Close customer database modal
+    if (closeDatabaseModal) {
+        closeDatabaseModal.addEventListener('click', function() {
+            customerDatabaseModal.classList.add('hidden');
+            customerDatabaseModal.classList.remove('flex');
+        });
+    }
+    
+    // Close modal when clicking outside
+    customerDatabaseModal.addEventListener('click', function(e) {
+        if (e.target === customerDatabaseModal) {
+            customerDatabaseModal.classList.add('hidden');
+            customerDatabaseModal.classList.remove('flex');
+        }
     });
+    
+    // Save current prediction to database
+    if (saveToDatabaseBtn) {
+        saveToDatabaseBtn.addEventListener('click', function() {
+            const customerId = document.getElementById('customerIdInput').value.trim();
+            const spending = parseFloat(document.getElementById('spendingInput').value) || 0;
+            const frequency = parseInt(document.querySelector('input[type="range"]').value) || 14;
+            const teaSelect = document.querySelector('select');
+            const teaType = teaSelect ? teaSelect.value : 'Unknown';
+            
+            // Get satisfaction score
+            let satisfaction = 3;
+            const satisfactionButtons = document.querySelectorAll('.flex.gap-2 button');
+            satisfactionButtons.forEach((button, index) => {
+                if (button.classList.contains('border-primary') && button.classList.contains('bg-primary')) {
+                    satisfaction = index + 1;
+                }
+            });
+            
+            // Get current prediction results
+            const churnProbability = document.getElementById('churnRiskValue').textContent;
+            const customerGroup = document.getElementById('customerGroup').textContent;
+            
+            if (!customerId) {
+                alert('Please enter a Customer ID before saving to database.');
+                document.getElementById('customerIdInput').focus();
+                return;
+            }
+            
+            if (churnProbability === '--') {
+                alert('Please run a prediction first before saving to database.');
+                return;
+            }
+            
+            // Check if customer ID already exists
+            const existingIndex = customerDatabase.findIndex(customer => customer.id === customerId);
+            const now = new Date();
+            const customerData = {
+                id: customerId,
+                spending: spending,
+                frequency: frequency,
+                teaType: teaType,
+                satisfaction: satisfaction,
+                churnRate: churnProbability.replace('%', ''),
+                group: customerGroup,
+                date: now.toISOString(),
+                displayDate: now.toLocaleDateString() + ' ' + now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})
+            };
+            
+            if (existingIndex >= 0) {
+                // Update existing customer
+                customerDatabase[existingIndex] = customerData;
+            } else {
+                // Add new customer
+                customerDatabase.push(customerData);
+            }
+            
+            // Save to localStorage
+            localStorage.setItem('teaInsightCustomerDatabase', JSON.stringify(customerDatabase));
+            
+            // Show confirmation
+            const originalText = saveToDatabaseBtn.textContent;
+            saveToDatabaseBtn.innerHTML = '<span class="material-symbols-outlined text-sm">check</span> Saved!';
+            saveToDatabaseBtn.style.color = '#6B9E7A';
+            
+            setTimeout(() => {
+                saveToDatabaseBtn.innerHTML = '<span class="material-symbols-outlined text-sm">save</span> Save to DB';
+                saveToDatabaseBtn.style.color = '';
+            }, 2000);
+            
+            // Update database table if modal is open
+            if (!customerDatabaseModal.classList.contains('hidden')) {
+                updateDatabaseTable();
+            }
+            
+            console.log('Saved customer to database:', customerData);
+        });
+    }
+    
+    // Update database table with current data
+    function updateDatabaseTable() {
+        const searchTerm = databaseSearchInput ? databaseSearchInput.value.toLowerCase() : '';
+        const filteredCustomers = customerDatabase.filter(customer =>
+            customer.id.toLowerCase().includes(searchTerm)
+        );
+        
+        // Clear table body
+        databaseTableBody.innerHTML = '';
+        
+        if (filteredCustomers.length === 0) {
+            databaseTableBody.appendChild(noDataRow);
+            noDataRow.classList.remove('hidden');
+        } else {
+            noDataRow.classList.add('hidden');
+            
+            // Sort by date (newest first)
+            filteredCustomers.sort((a, b) => new Date(b.date) - new Date(a.date));
+            
+            // Add rows
+            filteredCustomers.forEach(customer => {
+                const row = document.createElement('tr');
+                row.className = 'border-b border-primary/5 hover:bg-primary/2';
+                row.innerHTML = `
+                    <td class="py-3 px-4 font-mono text-sm font-bold text-primary">${customer.id}</td>
+                    <td class="py-3 px-4 text-sm">¥${customer.spending.toLocaleString()}</td>
+                    <td class="py-3 px-4 text-sm">${customer.frequency} visits/mo</td>
+                    <td class="py-3 px-4">
+                        <div class="flex items-center gap-2">
+                            <span class="font-bold text-primary">${customer.churnRate}%</span>
+                            <div class="h-2 w-16 bg-primary/10 rounded-full overflow-hidden">
+                                <div class="h-full bg-primary rounded-full" style="width: ${customer.churnRate}%"></div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="py-3 px-4">
+                        <span class="text-xs font-bold px-2 py-1 rounded-full ${getGroupClass(customer.group)}">${customer.group}</span>
+                    </td>
+                    <td class="py-3 px-4 text-xs text-primary/60">${customer.displayDate}</td>
+                    <td class="py-3 px-4">
+                        <button class="text-xs text-primary hover:text-gold flex items-center gap-1 load-customer-btn" data-id="${customer.id}">
+                            <span class="material-symbols-outlined text-sm">upload</span>
+                            Load
+                        </button>
+                    </td>
+                `;
+                databaseTableBody.appendChild(row);
+            });
+            
+            // Add event listeners to load buttons
+            document.querySelectorAll('.load-customer-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const customerId = this.getAttribute('data-id');
+                    loadCustomerData(customerId);
+                    customerDatabaseModal.classList.add('hidden');
+                    customerDatabaseModal.classList.remove('flex');
+                });
+            });
+        }
+        
+        // Update stats
+        updateDatabaseStats();
+    }
+    
+    // Get CSS class for customer group badge
+    function getGroupClass(group) {
+        if (group.includes('Loyal')) return 'bg-leaf/20 text-leaf';
+        if (group.includes('Stable')) return 'bg-primary/20 text-primary';
+        if (group.includes('At Risk')) return 'bg-gold/20 text-gold';
+        if (group.includes('Critical')) return 'bg-red-500/20 text-red-600';
+        return 'bg-primary/10 text-primary';
+    }
+    
+    // Load customer data into form
+    function loadCustomerData(customerId) {
+        const customer = customerDatabase.find(c => c.id === customerId);
+        if (!customer) return;
+        
+        // Fill form fields
+        document.getElementById('customerIdInput').value = customer.id;
+        document.getElementById('spendingInput').value = customer.spending;
+        
+        const frequencySlider = document.querySelector('input[type="range"]');
+        if (frequencySlider) {
+            frequencySlider.value = customer.frequency;
+            // Update display
+            const freqDisplay = frequencySlider.parentNode.querySelector('.text-gold');
+            if (freqDisplay) {
+                freqDisplay.textContent = `${customer.frequency} visits/mo`;
+            }
+        }
+        
+        const teaSelect = document.querySelector('select');
+        if (teaSelect) {
+            teaSelect.value = customer.teaType;
+        }
+        
+        // Set satisfaction buttons
+        const satisfactionButtons = document.querySelectorAll('.flex.gap-2 button');
+        satisfactionButtons.forEach((button, index) => {
+            button.classList.remove('border-primary', 'bg-primary', 'text-white', 'ring-2', 'ring-primary/20', 'shadow-md');
+            button.classList.add('border-primary/20', 'bg-white/50', 'text-primary');
+            
+            if (index + 1 === customer.satisfaction) {
+                button.classList.remove('border-primary/20', 'bg-white/50', 'text-primary');
+                button.classList.add('border-primary', 'bg-primary', 'text-white', 'ring-2', 'ring-primary/20', 'shadow-md');
+            }
+        });
+        
+        // Show notification
+        const notification = document.createElement('div');
+        notification.className = 'fixed top-4 right-4 bg-primary text-white px-4 py-2 rounded-lg shadow-lg z-[10000] flex items-center gap-2';
+        notification.innerHTML = `
+            <span class="material-symbols-outlined">check_circle</span>
+            <span>Loaded customer ${customerId} data</span>
+        `;
+        document.body.appendChild(notification);
+        
+        setTimeout(() => {
+            notification.remove();
+        }, 3000);
+    }
+    
+    // Update database statistics
+    function updateDatabaseStats() {
+        if (customerDatabase.length === 0) {
+            databaseStats.textContent = '0 customers, 0% average churn rate';
+            return;
+        }
+        
+        const totalCustomers = customerDatabase.length;
+        const avgChurnRate = customerDatabase.reduce((sum, customer) => sum + parseFloat(customer.churnRate), 0) / totalCustomers;
+        const highRiskCount = customerDatabase.filter(customer => parseFloat(customer.churnRate) > 50).length;
+        
+        databaseStats.textContent = `${totalCustomers} customers, ${avgChurnRate.toFixed(1)}% average churn rate, ${highRiskCount} high-risk`;
+    }
+    
+    // Search functionality for database
+    if (databaseSearchInput) {
+        databaseSearchInput.addEventListener('input', function() {
+            updateDatabaseTable();
+        });
+    }
+    
+    // Clear database
+    if (clearDatabaseBtn) {
+        clearDatabaseBtn.addEventListener('click', function() {
+            if (confirm('Are you sure you want to clear all customer data? This action cannot be undone.')) {
+                customerDatabase = [];
+                localStorage.removeItem('teaInsightCustomerDatabase');
+                updateDatabaseTable();
+                
+                // Show confirmation
+                const originalText = clearDatabaseBtn.textContent;
+                clearDatabaseBtn.innerHTML = '<span class="material-symbols-outlined text-sm">check</span> Cleared!';
+                clearDatabaseBtn.style.color = '#6B9E7A';
+                
+                setTimeout(() => {
+                    clearDatabaseBtn.innerHTML = '<span class="material-symbols-outlined text-sm">delete</span> Clear All Data';
+                    clearDatabaseBtn.style.color = '';
+                }, 2000);
+            }
+        });
+    }
+    
+    // Initialize database table on page load
+    updateDatabaseTable();
     
     console.log('Tea Insight Dashboard initialized successfully!');
 });
 </script>
+
+<!-- Customer Database Modal -->
+<div id="customerDatabaseModal" class="fixed inset-0 bg-black/50 z-[9999] hidden items-center justify-center p-4">
+    <div class="bg-white dark:bg-background-dark rounded-2xl w-full max-w-6xl max-h-[90vh] overflow-hidden flex flex-col">
+        <div class="bg-primary text-white px-8 py-6 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <span class="material-symbols-outlined text-2xl">database</span>
+                <h2 class="text-xl font-bold">Customer Database</h2>
+            </div>
+            <button id="closeDatabaseModal" class="text-white hover:text-gold transition-colors">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+        </div>
+        
+        <div class="p-6 flex-1 overflow-auto">
+            <!-- Search Bar -->
+            <div class="mb-6">
+                <div class="relative">
+                    <span class="material-symbols-outlined absolute left-3 top-2.5 text-primary/60">search</span>
+                    <input id="databaseSearchInput" class="w-full bg-white/50 border-primary/20 rounded-lg focus:ring-primary focus:border-primary pl-10 pr-4 py-2 text-sm" placeholder="Search customer ID..." type="text"/>
+                </div>
+                <p class="text-xs text-primary/50 mt-2">Type a customer ID to filter the database. Leave empty to show all customers.</p>
+            </div>
+            
+            <!-- Database Table -->
+            <div class="overflow-x-auto">
+                <table class="w-full border-collapse">
+                    <thead>
+                        <tr class="bg-primary/5 border-b border-primary/10">
+                            <th class="text-left py-3 px-4 text-xs font-bold text-primary/60 uppercase">Customer ID</th>
+                            <th class="text-left py-3 px-4 text-xs font-bold text-primary/60 uppercase">Spending</th>
+                            <th class="text-left py-3 px-4 text-xs font-bold text-primary/60 uppercase">Frequency</th>
+                            <th class="text-left py-3 px-4 text-xs font-bold text-primary/60 uppercase">Churn Rate</th>
+                            <th class="text-left py-3 px-4 text-xs font-bold text-primary/60 uppercase">Group</th>
+                            <th class="text-left py-3 px-4 text-xs font-bold text-primary/60 uppercase">Date Saved</th>
+                            <th class="text-left py-3 px-4 text-xs font-bold text-primary/60 uppercase">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="databaseTableBody">
+                        <!-- Database rows will be inserted here by JavaScript -->
+                        <tr id="noDataRow">
+                            <td colspan="7" class="py-8 text-center text-primary/40">
+                                <span class="material-symbols-outlined text-4xl mb-2 block">database</span>
+                                <p class="text-sm">No customer data saved yet.</p>
+                                <p class="text-xs mt-1">Run a prediction and click "Save to DB" to add customers to the database.</p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- Database Stats -->
+            <div class="mt-6 p-4 bg-primary/5 rounded-lg border border-primary/10">
+                <div class="flex justify-between items-center">
+                    <div>
+                        <p class="text-sm font-bold text-primary">Database Statistics</p>
+                        <p class="text-xs text-primary/60" id="databaseStats">0 customers, 0% average churn rate</p>
+                    </div>
+                    <button id="clearDatabase" class="text-xs font-bold text-red-500 hover:text-red-700 flex items-center gap-1">
+                        <span class="material-symbols-outlined text-sm">delete</span>
+                        Clear All Data
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 </body></html>
