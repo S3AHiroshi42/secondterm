@@ -1754,4 +1754,56 @@ document.addEventListener('DOMContentLoaded', function() {
     </div>
 </div>
 
+<script>
+// Settings Modal Functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const settingsButton = document.getElementById('settingsButton');
+    const settingsModal = document.getElementById('settingsModal');
+    const closeSettingsModal = document.getElementById('closeSettingsModal');
+    
+    if (settingsButton && settingsModal) {
+        settingsButton.addEventListener('click', function() {
+            settingsModal.classList.remove('hidden');
+            settingsModal.classList.add('flex');
+        });
+    }
+    
+    if (closeSettingsModal && settingsModal) {
+        closeSettingsModal.addEventListener('click', function() {
+            settingsModal.classList.add('hidden');
+            settingsModal.classList.remove('flex');
+        });
+    }
+    
+    // Close modal when clicking outside
+    if (settingsModal) {
+        settingsModal.addEventListener('click', function(e) {
+            if (e.target === settingsModal) {
+                settingsModal.classList.add('hidden');
+                settingsModal.classList.remove('flex');
+            }
+        });
+    }
+    
+    // Theme toggle functionality
+    const themeToggle = document.getElementById('themeToggle');
+    if (themeToggle) {
+        themeToggle.addEventListener('change', function() {
+            if (this.checked) {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('darkMode', 'enabled');
+            } else {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('darkMode', 'disabled');
+            }
+        });
+        
+        // Initialize toggle state
+        if (localStorage.getItem('darkMode') === 'enabled') {
+            themeToggle.checked = true;
+        }
+    }
+});
+</script>
+
 </body></html>
