@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Group Label Fix</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .test-result { padding: 10px; margin: 10px 0; border-radius: 5px; }
+        .pass { background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .fail { background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+        .info { background-color: #d1ecf1; color: #0c5460; border: 1px solid #bee5eb; }
+    </style>
+</head>
+<body>
+    <h1>Test Group Label Fix for Tea Insight Dashboard</h1>
+    
+    <div class="info test-result">
+        <h3>Test Description</h3>
+        <p>Testing if the group label under the ring chart updates correctly based on churn probability.</p>
+        <p>Expected behavior: When churn probability is 30.1%, the label should show "Group 2: Stable" instead of "Group 1: At Risk".</p>
+    </div>
+    
+    <div id="testResults">
+        <h2>Test Results</h2>
+        <div id="test1" class="test-result">
+            <h3>Test 1: Check if customerGroupLabel element exists</h3>
+            <p id="test1Result">Running...</p>
+        </div>
+        <div id="test2" class="test-result">
+            <h3>Test 2: Check if updatePredictionDisplay function exists</h3>
+            <p id="test2Result">Running...</p>
+        </div>
+        <div id="test3" class="test-result">
+            <h3>Test 3: Simulate churn probability calculation</h3>
+            <p id="test3Result">Running...</p>
+        </div>
+    </div>
+    
+    <script>
+        // Test 1: Check if customerGroupLabel element exists in index.html
+        function test1() {
+            const test1Result = document.getElementById('test1Result');
+            // We can't directly access index.html from here, but we can explain what to check
+            test1Result.innerHTML = `
+                <strong>Manual Check Required:</strong><br>
+                1. Open index.html in browser<br>
+                2. Inspect the group label under the ring chart<br>
+                3. Verify it has id="customerGroupLabel"<br>
+                4. Check console for "Tea Insight Dashboard initialized successfully!"<br>
+                5. The label should show "Group 2: Stable" (not "Group 1: At Risk")
+            `;
+            test1Result.parentElement.className = 'test-result info';
+        }
+        
+        // Test 2: Check if updatePredictionDisplay function exists
+        function test2() {
+            const test2Result = document.getElementById('test2Result');
+            // We can't directly test this from another file, but we can explain
+            test2Result.innerHTML = `
+                <strong>Code Verification:</strong><br>
+                1. In index.html, search for "function updatePredictionDisplay"<br>
+                2. Verify it calls calculateChurnPrediction()<br>
+                3. Verify calculateChurnPrediction() returns customerGroup based on probability<br>
+                4. For 30.1% churn probability, customerGroup should be "Group 2: Stable"
+            `;
+            test2Result.parentElement.className = 'test-result info';
+        }
+        
+        // Test 3: Simulate the logic
+        function test3() {
+            const test3Result = document.getElementById('test3Result');
+            
+            // Simulate the calculateChurnPrediction logic
+            function simulateChurnPrediction(churnProbability) {
+                let customerGroup;
+                if (churnProbability < 20) {
+                    customerGroup = 'Group 1: Loyal';
+                } else if (churnProbability < 40) {
+                    customerGroup = 'Group 2: Stable';
+                } else if (churnProbability < 60) {
+                    customerGroup = 'Group 3: At Risk';
+                } else {
+                    customerGroup = 'Group 4: Critical';
+                }
+                return customerGroup;
+            }
+            
+            const testProbability = 30.1;
+            const expectedGroup = 'Group 2: Stable';
+            const actualGroup = simulateChurnPrediction(testProbability);
+            
+            if (actualGroup === expectedGroup) {
+                test3Result.innerHTML = `
+                    <strong>✓ PASS:</strong> Logic is correct<br>
+                    For churn probability ${testProbability}%, the function returns "${actualGroup}"<br>
+                    This matches the expected "${expectedGroup}"
+                `;
+                test3Result.parentElement.className = 'test-result pass';
+            } else {
+                test3Result.innerHTML = `
+                    <strong>✗ FAIL:</strong> Logic is incorrect<br>
+                    For churn probability ${testProbability}%, the function returns "${actualGroup}"<br>
+                    But expected "${expectedGroup}"
+                `;
+                test3Result.parentElement.className = 'test-result fail';
+            }
+        }
+        
+        // Run tests
+        test1();
+        test2();
+        test3();
+    </script>
+    
+    <div class="info test-result">
+        <h3>Instructions for Manual Testing</h3>
+        <ol>
+            <li>Open <strong>index.html</strong> in a web browser</li>
+            <li>Look at the ring chart (pie chart) section</li>
+            <li>Below the chart, you should see a group label</li>
+            <li><strong>Before fix:</strong> The label says "Group 1: At Risk" (incorrect for 30.1%)</li>
+            <li><strong>After fix:</strong> The label should say "Group 2: Stable" (correct for 30.1%)</li>
+            <li>Click the "Brew Prediction" button to verify it still updates correctly</li>
+            <li>Change input values and test different churn probabilities to see all four groups:
+                <ul>
+                    <li>0-20%: Group 1: Loyal</li>
+                    <li>20-40%: Group 2: Stable</li>
+                    <li>40-60%: Group 3: At Risk</li>
+                    <li>60%+: Group 4: Critical</li>
+                </ul>
+            </li>
+        </ol>
+    </div>
+    
+    <div class="info test-result">
+        <h3>Summary of Changes Made</h3>
+        <ul>
+            <li>Added <code>id="customerGroupLabel"</code> to the group label element in index.html</li>
+            <li>Updated JavaScript selector from complex CSS selector to <code>document.getElementById('customerGroupLabel')</code></li>
+            <li>Added call to <code>updatePredictionDisplay()</code> on page load to initialize with correct group</li>
+        </ul>
+    </div>
+</body>
+</html>

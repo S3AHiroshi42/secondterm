@@ -516,7 +516,7 @@ Recommended Action
     </div>
 <div class="flex items-center gap-3 mt-4">
 <span class="w-3 h-3 bg-primary rounded-full animate-ping"></span>
-<p class="text-lg font-bold text-primary bg-primary/10 border border-primary/20 px-8 py-2 rounded-full uppercase tracking-widest shadow-sm">Group 1: At Risk</p>
+<p id="customerGroupLabel" class="text-lg font-bold text-primary bg-primary/10 border border-primary/20 px-8 py-2 rounded-full uppercase tracking-widest shadow-sm">Group 1: At Risk</p>
 </div>
 </div>
 </div>
@@ -1127,7 +1127,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         // Update group label below pie chart
-        const groupLabel = document.querySelector('.col-span-6 .glass-card .text-sm.font-bold.text-primary.bg-primary\\/10');
+        const groupLabel = document.getElementById('customerGroupLabel');
         console.log('groupLabel found?', !!groupLabel);
         if (groupLabel) {
             groupLabel.textContent = results.customerGroup;
@@ -1532,6 +1532,11 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Initialize database table on page load
     updateDatabaseTable();
+    
+    // Initialize prediction display with correct group label
+    if (typeof updatePredictionDisplay === 'function') {
+        updatePredictionDisplay();
+    }
     
     console.log('Tea Insight Dashboard initialized successfully!');
 });
