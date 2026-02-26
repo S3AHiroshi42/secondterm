@@ -23,17 +23,59 @@
                     }
                 },
             },
-        } bcz
+        }
     </script>
 <style>
 .glass-card {
     background: rgba(255, 255, 255, 0.7);
     backdrop-filter: blur(12px);
     border: 1px solid rgba(58, 105, 78, 0.1);
+    box-shadow: 0 4px 6px -1px rgba(58, 105, 78, 0.05);
+}
+.ink-wash-bg {
+    background: linear-gradient(135deg, rgba(248, 246, 243, 0.95) 0%, rgba(248, 246, 243, 0.8) 100%),
+                url('https://www.transparenttextures.com/patterns/rice-paper.png');
+}
+.glass-card-enhanced {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.6) 100%);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(58, 105, 78, 0.15);
+    box-shadow: 0 8px 16px -2px rgba(58, 105, 78, 0.08);
 }
 .dark .glass-card {
     background: rgba(22, 28, 25, 0.7);
+    border: 1px solid rgba(58, 105, 78, 0.2);
 }
+.dark .glass-card-enhanced {
+    background: linear-gradient(135deg, rgba(22, 28, 25, 0.8) 0%, rgba(22, 28, 25, 0.6) 100%);
+    border: 1px solid rgba(58, 105, 78, 0.3);
+}
+.dark .ink-wash-bg {
+    background: linear-gradient(135deg, rgba(22, 28, 25, 0.95) 0%, rgba(22, 28, 25, 0.8) 100%),
+                url('https://www.transparenttextures.com/patterns/rice-paper.png');
+}
+
+/* White button styles for better visibility */
+.btn-white {
+    background: white !important;
+    color: #3a694e !important;
+    border: 1px solid rgba(58, 105, 78, 0.2) !important;
+}
+
+.btn-white:hover {
+    background: #f8f6f3 !important;
+    border-color: rgba(58, 105, 78, 0.3) !important;
+}
+
+.dark .btn-white {
+    background: white !important;
+    color: #3a694e !important;
+}
+
+.dark .btn-white:hover {
+    background: #f8f6f3 !important;
+}
+
 .chart-tooltip {
     position: absolute;
     background: rgba(22, 28, 25, 0.95);
@@ -52,22 +94,96 @@
 .chart-bar:hover {
     transform: scale(1.05);
 }
+
+/* Enhanced chart styles */
+.chart-container {
+    position: relative;
+    height: 300px;
+    width: 100%;
+}
+
+.chart-grid {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 40px;
+}
+
+.chart-bar-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    justify-content: flex-end;
+}
+
+.chart-bar-fill {
+    width: 40px;
+    background: linear-gradient(to top, #3a694e, #6B9E7A);
+    border-radius: 6px 6px 0 0;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.chart-bar-fill:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(58, 105, 78, 0.3);
+}
+
+.chart-bar-label {
+    margin-top: 8px;
+    font-size: 12px;
+    color: #3a694e;
+    font-weight: 600;
+}
+
+.dark .chart-bar-label {
+    color: #f8f6f3;
+}
+
+.chart-bar-value {
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(22, 28, 25, 0.9);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 600;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    white-space: nowrap;
+}
+
+.chart-bar-container:hover .chart-bar-value {
+    opacity: 1;
+}
 </style>
 </head>
-<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen">
-<header class="bg-primary text-white px-8 py-4 sticky top-0 z-50">
+<body class="bg-background-light dark:bg-background-dark bg-paper-texture font-display text-slate-900 dark:text-slate-100 min-h-screen relative overflow-x-hidden">
+<!-- Background decorative elements -->
+<div class="fixed inset-0 pointer-events-none z-0">
+    <div class="absolute top-1/4 left-1/4 w-64 h-64 rounded-full bg-primary/5 blur-3xl"></div>
+    <div class="absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full bg-leaf/5 blur-3xl"></div>
+    <div class="absolute top-3/4 left-3/4 w-48 h-48 rounded-full bg-gold/5 blur-3xl"></div>
+</div>
+
+<header class="bg-primary text-white px-8 py-4 sticky top-0 z-50 shadow-lg border-b border-gold/30">
     <div class="max-w-[1600px] mx-auto flex items-center justify-between">
         <div class="flex items-center gap-12">
             <a href="home.html" class="flex items-center gap-3">
                 <div class="relative">
-                    <div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
-                        <span class="material-symbols-outlined text-white">local_cafe</span>
-                    </div>
+                    <span class="material-symbols-outlined text-gold text-3xl relative z-10">emoji_food_beverage</span>
+                    <span class="material-symbols-outlined text-white/50 text-sm absolute -top-2 left-1/2 -translate-x-1/2 animate-steam">waves</span>
+                    <span class="material-symbols-outlined text-white/30 text-xs absolute -top-4 left-1/2 -translate-x-1/2 animate-steam delay-75">waves</span>
                 </div>
-                <div>
-                    <h1 class="text-xl font-bold">Tea Insight</h1>
-                    <p class="text-xs opacity-70">Financial Insights</p>
-                </div>
+                <h1 class="text-xl font-extrabold tracking-tight text-balance">TEA INSIGHT</h1>
             </a>
 
             <nav class="flex gap-8">
@@ -99,58 +215,247 @@
     </div>
 </header>
 
-<main class="max-w-[1600px] mx-auto p-6 space-y-6">
+<main class="max-w-[1600px] mx-auto p-6 space-y-6 relative z-10">
+    <!-- Page Header -->
     <section class="glass-card p-8 rounded-2xl border-l-8 border-gold">
-        <h1 class="text-3xl font-bold text-primary dark:text-white mb-2">Financial Insights Dashboard</h1>
-        <p class="text-primary/60 dark:text-slate-300">Comprehensive financial analysis</p>
+        <div class="flex items-center justify-between">
+            <div>
+                <h1 class="text-3xl font-bold text-primary dark:text-white mb-2">Financial Insights Dashboard</h1>
+                <p class="text-primary/60 dark:text-slate-300">Comprehensive financial analysis and revenue forecasting</p>
+            </div>
+            <div class="flex items-center gap-4">
+                <div class="bg-primary/10 dark:bg-primary/20 px-4 py-2 rounded-lg">
+                    <p class="text-xs text-primary/60 dark:text-slate-300">Last Updated</p>
+                    <p class="text-lg font-bold text-primary dark:text-white" id="lastUpdatedTime">Today, 14:30</p>
+                </div>
+                <button class="btn-white font-bold px-6 py-3 rounded-xl flex items-center gap-2 hover:shadow-xl transition-all">
+                    <span class="material-symbols-outlined">download</span>
+                    Export Report
+                </button>
+            </div>
+        </div>
     </section>
 
+    <!-- Key Metrics -->
     <div class="grid grid-cols-4 gap-6">
-        <div class="glass-card p-6 rounded-xl">
-            <p class="text-sm text-primary/60 font-semibold mb-1">Monthly Revenue</p>
-            <h3 class="text-3xl font-extrabold text-primary">¥2.4M</h3>
+        <div class="glass-card p-6 rounded-xl relative overflow-hidden group hover:shadow-md transition-all border-b-2 border-transparent hover:border-primary/20">
+            <span class="material-symbols-outlined absolute -right-4 -bottom-4 text-primary/10 text-8xl rotate-12 transition-transform group-hover:rotate-45">payments</span>
+            <p class="text-sm text-primary/60 font-semibold mb-1 uppercase tracking-wider flex items-center gap-1">
+                <span class="material-symbols-outlined text-base">attach_money</span> Monthly Revenue
+            </p>
+            <h3 class="text-3xl font-extrabold text-primary font-display">¥2.4M</h3>
             <div class="flex items-center gap-1 mt-2 text-leaf text-sm font-bold bg-leaf/10 w-fit px-2 py-0.5 rounded-full">
+                <span class="material-symbols-outlined text-sm">trending_up</span>
                 <span>+8.2%</span>
             </div>
         </div>
         
-        <div class="glass-card p-6 rounded-xl">
-            <p class="text-sm text-primary/60 font-semibold mb-1">Profit Margin</p>
-            <h3 class="text-3xl font-extrabold text-primary">34.2%</h3>
+        <div class="glass-card p-6 rounded-xl relative overflow-hidden group hover:shadow-md transition-all border-b-2 border-transparent hover:border-primary/20">
+            <span class="material-symbols-outlined absolute -right-4 -bottom-4 text-primary/10 text-8xl rotate-12 transition-transform group-hover:rotate-45">savings</span>
+            <p class="text-sm text-primary/60 font-semibold mb-1 uppercase tracking-wider flex items-center gap-1">
+                <span class="material-symbols-outlined text-base">percent</span> Profit Margin
+            </p>
+            <h3 class="text-3xl font-extrabold text-primary font-display">34.2%</h3>
             <div class="flex items-center gap-1 mt-2 text-leaf text-sm font-bold bg-leaf/10 w-fit px-2 py-0.5 rounded-full">
+                <span class="material-symbols-outlined text-sm">trending_up</span>
                 <span>+2.1%</span>
             </div>
         </div>
         
-        <div class="glass-card p-6 rounded-xl">
-            <p class="text-sm text-primary/60 font-semibold mb-1">Inventory Value</p>
-            <h3 class="text-3xl font-extrabold text-primary">¥1.8M</h3>
-            <div class="flex items-center gap-1 mt-2 text-red-600 text-sm font-bold bg-red-50 w-fit px-2 py-0.5 rounded-full">
+        <div class="glass-card p-6 rounded-xl relative overflow-hidden group hover:shadow-md transition-all border-b-2 border-transparent hover:border-primary/20">
+            <span class="material-symbols-outlined absolute -right-4 -bottom-4 text-primary/10 text-8xl rotate-12 transition-transform group-hover:rotate-45">inventory</span>
+            <p class="text-sm text-primary/60 font-semibold mb-1 uppercase tracking-wider flex items-center gap-1">
+                <span class="material-symbols-outlined text-base">warehouse</span> Inventory Value
+            </p>
+            <h3 class="text-3xl font-extrabold text-primary font-display">¥1.8M</h3>
+            <div class="flex items-center gap-1 mt-2 text-red-600 text-sm font-bold bg-red-50 w-fit px-2 py-0.5 rounded-full border border-red-100">
+                <span class="material-symbols-outlined text-sm">trending_down</span>
                 <span>-3.5%</span>
             </div>
         </div>
         
-        <div class="glass-card p-6 rounded-xl">
-            <p class="text-sm text-primary/60 font-semibold mb-1">Annual Target</p>
-            <h3 class="text-3xl font-extrabold text-primary">78%</h3>
+        <div class="glass-card glass-card-enhanced p-6 rounded-xl relative overflow-hidden group hover:shadow-md transition-all border-b-2 border-transparent hover:border-primary/20">
+            <span class="material-symbols-outlined absolute -right-4 -bottom-4 text-primary/10 text-8xl rotate-12 transition-transform group-hover:rotate-45">target</span>
+            <p class="text-sm text-primary/60 font-semibold mb-1 uppercase tracking-wider flex items-center gap-1">
+                <span class="material-symbols-outlined text-base">flag</span> Annual Target
+            </p>
+            <h3 class="text-3xl font-extrabold text-primary font-display">78%</h3>
             <div class="flex items-center gap-1 mt-2 text-gold text-sm font-bold bg-gold/10 w-fit px-2 py-0.5 rounded-full">
+                <span class="material-symbols-outlined text-sm">check_circle</span>
                 <span>On Track</span>
             </div>
         </div>
     </div>
 
-    <div class="glass-card rounded-xl p-6">
-        <h3 class="text-lg font-bold text-primary flex items-center gap-2 mb-2">
-            <span class="material-symbols-outlined text-gold">bar_chart</span>
-            Revenue Trend (Last 12 Months)
-        </h3>
-        <p class="text-sm text-primary/60 mb-6">Hover over bars to see details.</p>
-        
-        <div class="relative h-64">
-            <div class="absolute bottom-0 left-0 right-0 flex items-end justify-between h-48 px-4" id="chartContainer">
-                <!-- Chart bars will be generated by JavaScript -->
+    <!-- Main Chart Section -->
+    <div class="grid grid-cols-12 gap-6">
+        <!-- Revenue Chart -->
+        <div class="col-span-8">
+            <div class="glass-card rounded-2xl p-8 min-h-[500px] flex flex-col relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-gold to-transparent"></div>
+                <div class="absolute top-6 left-8 flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-primary/5 flex items-center justify-center border border-primary/10">
+                        <span class="material-symbols-outlined text-primary">bar_chart</span>
+                    </div>
+                    <div>
+                        <h3 class="text-primary font-bold text-lg leading-tight">Revenue Trend Analysis</h3>
+                        <p class="text-primary/50 text-xs font-mono">Last 12 Months Performance</p>
+                    </div>
+                </div>
+                
+                <div class="mt-8 flex-1">
+                    <div class="chart-container" id="mainChartContainer">
+                        <!-- Enhanced chart will be generated by JavaScript -->
+                    </div>
+                </div>
+                
+                <div class="mt-6 flex items-center justify-between text-sm text-primary/60">
+                    <div class="flex items-center gap-2">
+                        <span class="w-3 h-3 rounded-full bg-primary"></span>
+                        <span>Revenue (¥ Millions)</span>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <div class="flex items-center gap-2">
+                            <span class="w-3 h-3 rounded-full bg-leaf"></span>
+                            <span>Projection</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="w-3 h-3 rounded-full bg-gold"></span>
+                            <span>Target</span>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div id="chartTooltip" class="chart-tooltip"></div>
+        </div>
+        
+        <!-- Side Metrics -->
+        <div class="col-span-4 space-y-6">
+            <div class="glass-card rounded-xl p-6 border-l-4 border-gold bg-gradient-to-r from-gold/5 to-transparent">
+                <h3 class="text-lg font-bold text-primary flex items-center gap-2 mb-4">
+                    <span class="material-symbols-outlined text-gold">insights</span>
+                    Quick Insights
+                </h3>
+                <div class="space-y-4">
+                    <div class="p-3 bg-white/50 dark:bg-slate-800/50 rounded-lg">
+                        <p class="text-sm font-bold text-primary flex items-center gap-2">
+                            <span class="material-symbols-outlined text-leaf text-sm">trending_up</span>
+                            Peak Revenue Month
+                        </p>
+                        <p class="text-xs text-primary/60 mt-1">December showed 24% growth due to holiday season sales.</p>
+                    </div>
+                    <div class="p-3 bg-white/50 dark:bg-slate-800/50 rounded-lg">
+                        <p class="text-sm font-bold text-primary flex items-center gap-2">
+                            <span class="material-symbols-outlined text-red-500 text-sm">warning</span>
+                            Cost Alert
+                        </p>
+                        <p class="text-xs text-primary/60 mt-1">Inventory costs increased by 12% in Q3. Review suppliers.</p>
+                    </div>
+                    <div class="p-3 bg-white/50 dark:bg-slate-800/50 rounded-lg">
+                        <p class="text-sm font-bold text-primary flex items-center gap-2">
+                            <span class="material-symbols-outlined text-gold text-sm">star</span>
+                            Best Performing Product
+                        </p>
+                        <p class="text-xs text-primary/60 mt-1">Premium Oolong Tea accounts for 38% of total revenue.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="glass-card rounded-xl p-6">
+                <h3 class="text-lg font-bold text-primary flex items-center gap-2 mb-4">
+                    <span class="material-symbols-outlined text-primary">pie_chart</span>
+                    Revenue Distribution
+                </h3>
+                <div class="space-y-3">
+                    <div>
+                        <div class="flex justify-between text-sm mb-1">
+                            <span class="text-primary">Premium Teas</span>
+                            <span class="font-bold text-primary">42%</span>
+                        </div>
+                        <div class="h-2 bg-primary/10 rounded-full overflow-hidden">
+                            <div class="h-full bg-primary rounded-full" style="width: 42%"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between text-sm mb-1">
+                            <span class="text-primary">Tea Accessories</span>
+                            <span class="font-bold text-primary">28%</span>
+                        </div>
+                        <div class="h-2 bg-leaf/10 rounded-full overflow-hidden">
+                            <div class="h-full bg-leaf rounded-full" style="width: 28%"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between text-sm mb-1">
+                            <span class="text-primary">Tea Ceremonies</span>
+                            <span class="font-bold text-primary">18%</span>
+                        </div>
+                        <div class="h-2 bg-gold/10 rounded-full overflow-hidden">
+                            <div class="h-full bg-gold rounded-full" style="width: 18%"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between text-sm mb-1">
+                            <span class="text-primary">Other Products</span>
+                            <span class="font-bold text-primary">12%</span>
+                        </div>
+                        <div class="h-2 bg-slate-300/10 rounded-full overflow-hidden">
+                            <div class="h-full bg-slate-400 rounded-full" style="width: 12%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Additional Charts -->
+    <div class="grid grid-cols-3 gap-6">
+        <div class="glass-card rounded-xl p-6">
+            <h3 class="text-lg font-bold text-primary flex items-center gap-2 mb-4">
+                <span class="material-symbols-outlined text-leaf">show_chart</span>
+                Monthly Growth
+            </h3>
+            <div class="h-48 flex items-end justify-between" id="growthChart">
+                <!-- Growth chart bars -->
+            </div>
+        </div>
+        
+        <div class="glass-card rounded-xl p-6">
+            <h3 class="text-lg font-bold text-primary flex items-center gap-2 mb-4">
+                <span class="material-symbols-outlined text-gold">account_balance</span>
+                Profit Forecast
+            </h3>
+            <div class="h-48 flex items-center justify-center">
+                <div class="text-center">
+                    <div class="text-4xl font-bold text-primary mb-2">+18%</div>
+                    <p class="text-sm text-primary/60">Next Quarter Projection</p>
+                    <div class="mt-4 text-xs text-primary/40">Based on current trends</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="glass-card rounded-xl p-6">
+            <h3 class="text-lg font-bold text-primary flex items-center gap-2 mb-4">
+                <span class="material-symbols-outlined text-primary">compare_arrows</span>
+                YoY Comparison
+            </h3>
+            <div class="h-48 flex flex-col justify-center">
+                <div class="flex items-center justify-between mb-4">
+                    <div>
+                        <p class="text-sm text-primary/60">Current Year</p>
+                        <p class="text-xl font-bold text-primary">¥28.4M</p>
+                    </div>
+                    <div>
+                        <p class="text-sm text-primary/60">Previous Year</p>
+                        <p class="text-xl font-bold text-primary/60">¥23.7M</p>
+                    </div>
+                </div>
+                <div class="bg-primary/5 p-4 rounded-lg">
+                    <p class="text-sm font-bold text-leaf flex items-center gap-1">
+                        <span class="material-symbols-outlined text-sm">trending_up</span>
+                        +19.8% Year-over-Year Growth
+                    </p>
+                </div>
+            </div>
         </div>
     </div>
 </main>
@@ -217,6 +522,16 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
+    console.log('Financial Insights Dashboard initialized');
+    
+    // Update last updated time
+    const lastUpdatedTime = document.getElementById('lastUpdatedTime');
+    if (lastUpdatedTime) {
+        const now = new Date();
+        const timeString = now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+        lastUpdatedTime.textContent = `Today, ${timeString}`;
+    }
+    
     // Dark Mode Toggle
     const darkModeToggle = document.getElementById('darkModeToggle');
     if (darkModeToggle) {
@@ -227,6 +542,7 @@ document.addEventListener('DOMContentLoaded', function() {
             this.querySelector('span:last-child').textContent = isDark ? 'Light Mode' : 'Dark Mode';
         });
         
+        // Restore dark mode preference
         if (localStorage.getItem('darkMode') === 'enabled') {
             document.documentElement.classList.add('dark');
             darkModeToggle.querySelector('span:first-child').textContent = 'light_mode';
@@ -258,59 +574,179 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Interactive Chart with Tooltips
-    const chartData = [
-        { month: 'Jan', value: '¥1.8M', height: 40 },
-        { month: 'Feb', value: '¥2.1M', height: 50 },
-        { month: 'Mar', value: '¥2.4M', height: 60 },
-        { month: 'Apr', value: '¥2.2M', height: 55 },
-        { month: 'May', value: '¥2.6M', height: 65 },
-        { month: 'Jun', value: '¥2.8M', height: 70 },
-        { month: 'Jul', value: '¥3.0M', height: 75 },
-        { month: 'Aug', value: '¥3.2M', height: 80 },
-        { month: 'Sep', value: '¥3.1M', height: 78 },
-        { month: 'Oct', value: '¥3.4M', height: 85 },
-        { month: 'Nov', value: '¥3.6M', height: 90 },
-        { month: 'Dec', value: '¥4.0M', height: 100 }
-    ];
-
-    const chartContainer = document.getElementById('chartContainer');
-    const tooltip = document.getElementById('chartTooltip');
-
-    if (chartContainer && tooltip) {
-        chartData.forEach((data, index) => {
-            const bar = document.createElement('div');
-            bar.className = 'chart-bar flex flex-col items-center';
-            bar.setAttribute('data-month', data.month);
-            bar.setAttribute('data-value', data.value);
+    // Enhanced Financial Charts
+    createMainRevenueChart();
+    createGrowthChart();
+    
+    function createMainRevenueChart() {
+        const container = document.getElementById('mainChartContainer');
+        if (!container) return;
+        
+        // Clear container
+        container.innerHTML = '';
+        
+        // Create chart grid
+        const chartGrid = document.createElement('div');
+        chartGrid.className = 'chart-grid';
+        container.appendChild(chartGrid);
+        
+        // Revenue data for last 12 months
+        const revenueData = [
+            { month: 'Jan', revenue: 1.8, projection: 2.0, target: 2.2 },
+            { month: 'Feb', revenue: 2.1, projection: 2.3, target: 2.4 },
+            { month: 'Mar', revenue: 2.4, projection: 2.5, target: 2.6 },
+            { month: 'Apr', revenue: 2.2, projection: 2.4, target: 2.5 },
+            { month: 'May', revenue: 2.6, projection: 2.7, target: 2.8 },
+            { month: 'Jun', revenue: 2.8, projection: 3.0, target: 3.1 },
+            { month: 'Jul', revenue: 3.0, projection: 3.2, target: 3.3 },
+            { month: 'Aug', revenue: 3.2, projection: 3.4, target: 3.5 },
+            { month: 'Sep', revenue: 3.1, projection: 3.3, target: 3.4 },
+            { month: 'Oct', revenue: 3.4, projection: 3.6, target: 3.7 },
+            { month: 'Nov', revenue: 3.6, projection: 3.8, target: 4.0 },
+            { month: 'Dec', revenue: 4.0, projection: 4.2, target: 4.3 }
+        ];
+        
+        // Find max value for scaling
+        const maxValue = Math.max(...revenueData.map(d => Math.max(d.revenue, d.projection, d.target)));
+        
+        // Create bars for each month
+        revenueData.forEach((data, index) => {
+            const barContainer = document.createElement('div');
+            barContainer.className = 'chart-bar-container';
             
-            const barFill = document.createElement('div');
-            barFill.className = 'bar-fill w-8 bg-primary rounded-t transition-all duration-300';
-            barFill.style.height = data.height + '%';
+            // Create revenue bar (primary)
+            const revenueBar = document.createElement('div');
+            revenueBar.className = 'chart-bar-fill';
+            revenueBar.style.height = `${(data.revenue / maxValue) * 80}%`;
+            revenueBar.style.background = 'linear-gradient(to top, #3a694e, #6B9E7A)';
+            revenueBar.style.marginBottom = '4px';
             
+            // Create projection bar (leaf)
+            const projectionBar = document.createElement('div');
+            projectionBar.className = 'chart-bar-fill';
+            projectionBar.style.height = `${(data.projection / maxValue) * 80}%`;
+            projectionBar.style.background = 'linear-gradient(to top, #6B9E7A, #8BC34A)';
+            projectionBar.style.width = '30px';
+            projectionBar.style.opacity = '0.7';
+            projectionBar.style.marginBottom = '4px';
+            
+            // Create target bar (gold)
+            const targetBar = document.createElement('div');
+            targetBar.className = 'chart-bar-fill';
+            targetBar.style.height = `${(data.target / maxValue) * 80}%`;
+            targetBar.style.background = 'linear-gradient(to top, #D4A017, #FFC107)';
+            targetBar.style.width = '20px';
+            targetBar.style.opacity = '0.5';
+            
+            // Create value label
+            const valueLabel = document.createElement('div');
+            valueLabel.className = 'chart-bar-value';
+            valueLabel.textContent = `¥${data.revenue.toFixed(1)}M`;
+            
+            // Create month label
             const monthLabel = document.createElement('div');
-            monthLabel.className = 'text-xs text-primary/60 mt-2';
+            monthLabel.className = 'chart-bar-label';
             monthLabel.textContent = data.month;
             
-            bar.appendChild(barFill);
-            bar.appendChild(monthLabel);
-            chartContainer.appendChild(bar);
-
-            // Tooltip events
-            bar.addEventListener('mouseenter', function(e) {
-                const rect = this.getBoundingClientRect();
-                tooltip.innerHTML = `
-                    <div class="value">${data.value}</div>
-                    <div class="date">${data.month} 2024</div>
-                `;
-                tooltip.style.left = (rect.left + rect.width / 2 - 60) + 'px';
-                tooltip.style.top = (rect.top - 50) + 'px';
-                tooltip.classList.add('show');
+            // Add hover effects
+            barContainer.addEventListener('mouseenter', function() {
+                revenueBar.style.transform = 'translateY(-5px)';
+                valueLabel.style.opacity = '1';
             });
-
-            bar.addEventListener('mouseleave', function() {
-                tooltip.classList.remove('show');
+            
+            barContainer.addEventListener('mouseleave', function() {
+                revenueBar.style.transform = 'translateY(0)';
+                valueLabel.style.opacity = '0';
             });
+            
+            // Append elements
+            barContainer.appendChild(valueLabel);
+            barContainer.appendChild(targetBar);
+            barContainer.appendChild(projectionBar);
+            barContainer.appendChild(revenueBar);
+            barContainer.appendChild(monthLabel);
+            
+            chartGrid.appendChild(barContainer);
+        });
+    }
+    
+    function createGrowthChart() {
+        const container = document.getElementById('growthChart');
+        if (!container) return;
+        
+        // Clear container
+        container.innerHTML = '';
+        
+        // Growth percentage data
+        const growthData = [
+            { month: 'Jan', growth: 5.2 },
+            { month: 'Feb', growth: 7.8 },
+            { month: 'Mar', growth: 8.4 },
+            { month: 'Apr', growth: 6.1 },
+            { month: 'May', growth: 9.2 },
+            { month: 'Jun', growth: 10.5 },
+            { month: 'Jul', growth: 11.3 },
+            { month: 'Aug', growth: 12.7 },
+            { month: 'Sep', growth: 10.9 },
+            { month: 'Oct', growth: 13.4 },
+            { month: 'Nov', growth: 15.2 },
+            { month: 'Dec', growth: 24.1 }
+        ];
+        
+        // Find max growth for scaling
+        const maxGrowth = Math.max(...growthData.map(d => d.growth));
+        
+        // Create bars for each month
+        growthData.forEach((data, index) => {
+            const barContainer = document.createElement('div');
+            barContainer.className = 'flex flex-col items-center justify-end h-full';
+            barContainer.style.width = '30px';
+            
+            // Create growth bar
+            const growthBar = document.createElement('div');
+            growthBar.className = 'w-6 rounded-t transition-all duration-300';
+            
+            // Determine color based on growth
+            if (data.growth >= 15) {
+                growthBar.style.background = 'linear-gradient(to top, #4CAF50, #8BC34A)';
+            } else if (data.growth >= 10) {
+                growthBar.style.background = 'linear-gradient(to top, #6B9E7A, #8BC34A)';
+            } else if (data.growth >= 5) {
+                growthBar.style.background = 'linear-gradient(to top, #FF9800, #FFC107)';
+            } else {
+                growthBar.style.background = 'linear-gradient(to top, #F44336, #FF9800)';
+            }
+            
+            growthBar.style.height = `${(data.growth / maxGrowth) * 100}%`;
+            
+            // Create growth label
+            const growthLabel = document.createElement('div');
+            growthLabel.className = 'text-xs font-bold mt-1';
+            growthLabel.textContent = `${data.growth}%`;
+            growthLabel.style.color = '#3a694e';
+            
+            // Create month label
+            const monthLabel = document.createElement('div');
+            monthLabel.className = 'text-xs text-primary/60 mt-1';
+            monthLabel.textContent = data.month;
+            
+            // Add hover effect
+            barContainer.addEventListener('mouseenter', function() {
+                growthBar.style.transform = 'scale(1.1)';
+                growthBar.style.boxShadow = '0 5px 15px rgba(0,0,0,0.1)';
+            });
+            
+            barContainer.addEventListener('mouseleave', function() {
+                growthBar.style.transform = 'scale(1)';
+                growthBar.style.boxShadow = 'none';
+            });
+            
+            // Append elements
+            barContainer.appendChild(growthBar);
+            barContainer.appendChild(growthLabel);
+            barContainer.appendChild(monthLabel);
+            
+            container.appendChild(barContainer);
         });
     }
 
@@ -326,6 +762,26 @@ document.addEventListener('DOMContentLoaded', function() {
                 document.documentElement.classList.remove('dark');
                 localStorage.setItem('darkMode', 'disabled');
             }
+        });
+    }
+    
+    // Export Report Button
+    const exportButton = document.querySelector('button:has(.download)');
+    if (exportButton) {
+        exportButton.addEventListener('click', function() {
+            const originalText = this.textContent;
+            this.innerHTML = '<span class="material-symbols-outlined">check</span> Exporting...';
+            this.disabled = true;
+            
+            setTimeout(() => {
+                this.innerHTML = '<span class="material-symbols-outlined">download</span> Report Downloaded!';
+                setTimeout(() => {
+                    this.innerHTML = '<span class="material-symbols-outlined">download</span> Export Report';
+                    this.disabled = false;
+                }, 2000);
+            }, 1500);
+            
+            console.log('Financial report export initiated');
         });
     }
 });

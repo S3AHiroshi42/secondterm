@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test All Pages</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background: #f5f5f5;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #3a694e;
+            border-bottom: 2px solid #3a694e;
+            padding-bottom: 10px;
+        }
+        .test-list {
+            list-style: none;
+            padding: 0;
+        }
+        .test-item {
+            padding: 15px;
+            margin: 10px 0;
+            background: #f8f6f3;
+            border-left: 4px solid #3a694e;
+            border-radius: 5px;
+        }
+        .test-item.passed {
+            border-left-color: #6B9E7A;
+            background: #f0f9f0;
+        }
+        .test-item.failed {
+            border-left-color: #dc2626;
+            background: #fef2f2;
+        }
+        .test-link {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 8px 16px;
+            background: #3a694e;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .test-link:hover {
+            background: #2d553f;
+        }
+        .status {
+            float: right;
+            font-weight: bold;
+            padding: 3px 10px;
+            border-radius: 3px;
+            font-size: 12px;
+        }
+        .status.passed {
+            background: #6B9E7A;
+            color: white;
+        }
+        .status.failed {
+            background: #dc2626;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Tea Insight Dashboard - Page Alignment Test</h1>
+        <p>This test verifies that all pages have been aligned to the same format and functionality.</p>
+        
+        <ul class="test-list">
+            <li class="test-item">
+                <strong>1. Logo Alignment</strong>
+                <p>Verify that all pages use the same logo variant (tea cup with steam animation and "TEA INSIGHT" text).</p>
+                <div class="status">TO TEST</div>
+                <a href="index.html" class="test-link" target="_blank">Test Index Page</a>
+                <a href="customer-database.html" class="test-link" target="_blank">Test Customer Database</a>
+                <a href="home.html" class="test-link" target="_blank">Test Home Page</a>
+                <a href="financial-insights.html" class="test-link" target="_blank">Test Financial Insights</a>
+            </li>
+            
+            <li class="test-item">
+                <strong>2. Dark/Light Mode Functionality</strong>
+                <p>Verify that dark/light mode toggle works on all pages and persists across navigation.</p>
+                <div class="status">TO TEST</div>
+                <p>Click the "Dark Mode" button in the top-right of each page to test.</p>
+            </li>
+            
+            <li class="test-item">
+                <strong>3. Settings Modal Functionality</strong>
+                <p>Verify that settings modal opens and closes properly on all pages.</p>
+                <div class="status">TO TEST</div>
+                <p>Click the "Settings" button in the top-right of each page to test.</p>
+            </li>
+            
+            <li class="test-item">
+                <strong>4. Page Formatting Consistency</strong>
+                <p>Verify that all pages have consistent background elements, glass-card styling, and layout.</p>
+                <div class="status">TO TEST</div>
+                <p>Check that financial-insights.html matches the styling of index.html.</p>
+            </li>
+            
+            <li class="test-item">
+                <strong>5. Financial Insights Graph</strong>
+                <p>Verify that financial-insights.html has a comprehensive financial graph demonstrating expected effects.</p>
+                <div class="status">TO TEST</div>
+                <a href="financial-insights.html" class="test-link" target="_blank">Test Financial Graph</a>
+                <p>Check for: Revenue trend chart, growth chart, and interactive elements.</p>
+            </li>
+            
+            <li class="test-item">
+                <strong>6. Navigation Highlighting</strong>
+                <p>Verify that active page is highlighted in navigation on all pages.</p>
+                <div class="status">TO TEST</div>
+                <p>Check that the current page has a gold border-bottom in the navigation.</p>
+            </li>
+        </ul>
+        
+        <h2>Testing Instructions:</h2>
+        <ol>
+            <li>Open each page using the links above</li>
+            <li>Verify the logo matches the index.html style (tea cup with steam)</li>
+            <li>Test dark/light mode toggle - it should change the theme and update button text</li>
+            <li>Test settings modal - it should open and close properly</li>
+            <li>Check that financial-insights.html has enhanced charts with hover effects</li>
+            <li>Verify navigation highlights the current page</li>
+            <li>Check that all pages have consistent background decorative elements</li>
+        </ol>
+        
+        <h2>Expected Results:</h2>
+        <ul>
+            <li>All pages should have identical header/logo design</li>
+            <li>Dark mode should work consistently across all pages</li>
+            <li>Settings modal should work on all pages</li>
+            <li>Financial insights page should have comprehensive graphs</li>
+            <li>Navigation should correctly highlight active page</li>
+            <li>All pages should have consistent visual styling</li>
+        </ul>
+    </div>
+</body>
+</html>

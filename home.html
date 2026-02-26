@@ -120,15 +120,11 @@
             <!-- Logo -->
             <a href="home.html" class="flex items-center gap-3 group cursor-pointer">
                 <div class="relative">
-                    <div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
-                        <span class="material-symbols-outlined text-white">local_cafe</span>
-                    </div>
-                    <div class="absolute -top-1 -right-1 w-4 h-4 bg-gold rounded-full border-2 border-primary"></div>
+                    <span class="material-symbols-outlined text-gold text-3xl relative z-10">emoji_food_beverage</span>
+                    <span class="material-symbols-outlined text-white/50 text-sm absolute -top-2 left-1/2 -translate-x-1/2 animate-steam">waves</span>
+                    <span class="material-symbols-outlined text-white/30 text-xs absolute -top-4 left-1/2 -translate-x-1/2 animate-steam delay-75">waves</span>
                 </div>
-                <div>
-                    <h1 class="text-xl font-bold">Tea Insight</h1>
-                    <p class="text-xs opacity-70">Customer Churn Prediction System</p>
-                </div>
+                <h1 class="text-xl font-extrabold tracking-tight text-balance">TEA INSIGHT</h1>
             </a>
 
             <!-- Navigation -->
@@ -297,3 +293,164 @@
         <div class="flex items-center justify-between">
             <div class="max-w-2xl">
                 <h2 class="text-3xl font-bold text-primary mb-4">Ready to Transform Your Tea Business?</h2>
+                <p class="text-primary/60 mb-6">Get started with our comprehensive churn prediction and financial analytics platform. Join hundreds of tea businesses already using Tea Insight.</p>
+                <div class="flex gap-4">
+                    <a href="index.html" class="bg-primary text-white font-bold px-8 py-4 rounded-xl hover:bg-primary/90 transition-colors flex items-center gap-2">
+                        <span class="material-symbols-outlined">play_arrow</span>
+                        Start Free Trial
+                    </a>
+                    <a href="financial-insights.html" class="bg-transparent border-2 border-primary text-primary font-bold px-8 py-4 rounded-xl hover:bg-primary/10 transition-colors flex items-center gap-2">
+                        <span class="material-symbols-outlined">video_library</span>
+                        Watch Demo
+                    </a>
+                </div>
+            </div>
+            <div class="relative">
+                <div class="w-64 h-64 rounded-full bg-primary/5 flex items-center justify-center">
+                    <span class="material-symbols-outlined text-8xl text-primary/20">psychology</span>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer class="mt-12 py-12 border-t border-primary/5 dark:border-slate-800 text-center relative overflow-hidden bg-primary/5 dark:bg-slate-900/30 backdrop-blur-sm">
+    <div class="max-w-[1600px] mx-auto relative z-10">
+        <div class="flex justify-center items-end gap-8 text-primary/30 dark:text-slate-600 mb-4 h-12">
+            <div class="flex flex-col items-center gap-1 group">
+                <span class="material-symbols-outlined text-3xl group-hover:text-primary/50 transition-colors">local_cafe</span>
+                <div class="w-1 h-1 rounded-full bg-primary/20 group-hover:bg-primary/40 transition-colors"></div>
+            </div>
+            <div class="flex flex-col items-center gap-1 group">
+                <span class="material-symbols-outlined text-3xl group-hover:text-primary/50 transition-colors">insights</span>
+                <div class="w-1 h-1 rounded-full bg-primary/20 group-hover:bg-primary/40 transition-colors"></div>
+            </div>
+            <div class="flex flex-col items-center gap-1 group">
+                <span class="material-symbols-outlined text-3xl group-hover:text-primary/50 transition-colors">database</span>
+                <div class="w-1 h-1 rounded-full bg-primary/20 group-hover:bg-primary/40 transition-colors"></div>
+            </div>
+        </div>
+        <div class="flex justify-center items-center gap-4 text-primary/40 dark:text-slate-500 mt-6">
+            <span class="text-sm">© 2025 Tea Insight Dashboard</span>
+            <span class="text-xs">Customer Churn Prediction System</span>
+        </div>
+    </div>
+</footer>
+
+<script>
+// Dark mode toggle for home page
+const darkModeToggle = document.getElementById('darkModeToggle');
+if (darkModeToggle) {
+    darkModeToggle.addEventListener('click', function() {
+        const isDark = document.documentElement.classList.toggle('dark');
+        localStorage.setItem('darkMode', isDark ? 'enabled' : 'disabled');
+        this.querySelector('span:first-child').textContent = isDark ? 'light_mode' : 'dark_mode';
+        this.querySelector('span:last-child').textContent = isDark ? 'Light Mode' : 'Dark Mode';
+    });
+    
+    // Initialize dark mode
+    if (localStorage.getItem('darkMode') === 'enabled') {
+        document.documentElement.classList.add('dark');
+        darkModeToggle.querySelector('span:first-child').textContent = 'light_mode';
+        darkModeToggle.querySelector('span:last-child').textContent = 'Light Mode';
+    }
+}
+
+// Settings modal functionality for home page
+const settingsButton = document.getElementById('settingsButton');
+const settingsModal = document.getElementById('settingsModal');
+const closeSettingsModal = document.getElementById('closeSettingsModal');
+
+if (settingsButton && settingsModal) {
+    settingsButton.addEventListener('click', function() {
+        settingsModal.classList.remove('hidden');
+        settingsModal.classList.add('flex');
+    });
+}
+
+if (closeSettingsModal && settingsModal) {
+    closeSettingsModal.addEventListener('click', function() {
+        settingsModal.classList.add('hidden');
+        settingsModal.classList.remove('flex');
+    });
+}
+
+// Close modal when clicking outside
+if (settingsModal) {
+    settingsModal.addEventListener('click', function(e) {
+        if (e.target === settingsModal) {
+            settingsModal.classList.add('hidden');
+            settingsModal.classList.remove('flex');
+        }
+    });
+}
+</script>
+
+<!-- Settings Modal -->
+<div id="settingsModal" class="fixed inset-0 bg-black/50 z-[10000] hidden items-center justify-center p-4">
+    <div class="bg-white dark:bg-background-dark rounded-2xl w-full max-w-2xl max-h-[90vh] overflow-hidden flex flex-col">
+        <div class="bg-primary text-white px-8 py-6 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <span class="material-symbols-outlined text-2xl">settings</span>
+                <h2 class="text-xl font-bold">Settings</h2>
+            </div>
+            <button id="closeSettingsModal" class="text-white hover:text-gold transition-colors">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+        </div>
+        
+        <div class="p-6 flex-1 overflow-auto">
+            <div class="space-y-6">
+                <div class="glass-card p-6 rounded-xl">
+                    <h3 class="text-lg font-bold text-primary mb-4 flex items-center gap-2">
+                        <span class="material-symbols-outlined text-gold">palette</span>
+                        Theme Settings
+                    </h3>
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="font-medium text-primary">Dark Mode</p>
+                                <p class="text-sm text-primary/60">Toggle between light and dark theme</p>
+                            </div>
+                            <div class="relative">
+                                <input type="checkbox" id="themeToggle" class="sr-only" checked>
+                                <label for="themeToggle" class="block w-12 h-6 bg-primary/20 rounded-full cursor-pointer">
+                                    <span class="absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition-transform duration-300"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="glass-card p-6 rounded-xl">
+                    <h3 class="text-lg font-bold text-primary mb-4 flex items-center gap-2">
+                        <span class="material-symbols-outlined text-gold">notifications</span>
+                        Notifications
+                    </h3>
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="font-medium text-primary">Email Notifications</p>
+                                <p class="text-sm text-primary/60">Receive updates via email</p>
+                            </div>
+                            <input type="checkbox" class="toggle" checked>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="font-medium text-primary">Push Notifications</p>
+                                <p class="text-sm text-primary/60">Browser push notifications</p>
+                            </div>
+                            <input type="checkbox" class="toggle" checked>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="pt-4">
+                    <button class="w-full bg-primary text-white font-bold py-3 rounded-lg hover:bg-primary/90 transition-colors">Save Changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body></html>
