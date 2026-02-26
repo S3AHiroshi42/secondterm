@@ -283,7 +283,7 @@ input[type=range]::-moz-range-thumb {
 </nav>
 </div>
 <div class="flex items-center gap-6">
-    <button id="darkModeToggle" class="flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 hover:bg-primary/20 transition-colors text-primary dark:text-white">
+    <button id="darkModeToggle" class="flex items-center gap-2 px-4 py-2 rounded-full bg-white hover:bg-gray-100 transition-colors text-primary border border-primary/20 shadow-sm">
         <span class="material-symbols-outlined text-base">dark_mode</span>
         <span class="text-sm font-medium">Dark Mode</span>
     </button>
@@ -547,15 +547,15 @@ Recommended Action
 </div>
 </div>
 <div class="space-y-3 pt-2 bg-primary/5 p-4 rounded-lg border border-primary/5">
-<div class="flex justify-between items-center text-xs font-bold text-primary/80">
-<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">tune</span> Discount Simulator</span>
-<span class="text-gold bg-white px-2 py-1 rounded border border-gold/20 shadow-sm">15% Discount</span>
-</div>
-<input class="w-full h-1 bg-primary/20 rounded-lg appearance-none cursor-pointer" type="range"/>
-<div class="flex items-center gap-2 text-[11px] text-primary/60 font-medium bg-white/50 w-fit px-2 py-1 rounded">
-<span class="material-symbols-outlined text-leaf text-sm">trending_up</span>
-                             Predicted recovery probability increase: <span class="text-leaf font-bold">+18%</span>
-</div>
+    <div class="flex justify-between items-center text-xs font-bold text-primary/80">
+        <span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">tune</span> Discount Simulator</span>
+        <span id="discountValue" class="text-gold bg-white px-2 py-1 rounded border border-gold/20 shadow-sm">15% Discount</span>
+    </div>
+    <input id="discountSlider" class="w-full h-1 bg-primary/20 rounded-lg appearance-none cursor-pointer" type="range" min="0" max="100" value="15"/>
+    <div class="flex items-center gap-2 text-[11px] text-primary/60 font-medium bg-white/50 w-fit px-2 py-1 rounded">
+        <span class="material-symbols-outlined text-leaf text-sm">trending_up</span>
+                             Predicted recovery probability increase: <span id="recoveryIncrease" class="text-leaf font-bold">+18%</span>
+    </div>
 </div>
 </div>
 </div>
@@ -710,6 +710,29 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
+
+    // Discount Slider Functionality
+    const discountSlider = document.getElementById('discountSlider');
+    const discountValue = document.getElementById('discountValue');
+    const recoveryIncrease = document.getElementById('recoveryIncrease');
+    
+    if (discountSlider && discountValue) {
+        // Update discount display on slider change
+        discountSlider.addEventListener('input', function() {
+            const value = this.value;
+            discountValue.textContent = `${value}% Discount`;
+            
+            // Calculate recovery probability increase (simplified formula)
+            // Higher discount = higher recovery probability
+            const recoveryPercent = Math.min(50, Math.floor(value * 0.5) + 10);
+            recoveryIncrease.textContent = `+${recoveryPercent}%`;
+        });
+        
+        // Initialize display
+        discountValue.textContent = `${discountSlider.value}% Discount`;
+        const initialRecovery = Math.min(50, Math.floor(discountSlider.value * 0.5) + 10);
+        recoveryIncrease.textContent = `+${initialRecovery}%`;
+    }
     
     // Satisfaction Score Buttons
     const scoreButtons = document.querySelectorAll('.flex.gap-2 button');
