@@ -514,10 +514,6 @@ Recommended Action
             <p class="text-xs text-primary/60 font-bold uppercase tracking-widest mt-2">Churn Probability</p>
         </div>
     </div>
-<div class="flex items-center gap-3 mt-4">
-<span class="w-3 h-3 bg-primary rounded-full animate-ping"></span>
-<p id="customerGroupLabel" class="text-lg font-bold text-primary bg-primary/10 border border-primary/20 px-8 py-2 rounded-full uppercase tracking-widest shadow-sm">Group 1: At Risk</p>
-</div>
 </div>
 </div>
 </div>
@@ -1124,14 +1120,6 @@ document.addEventListener('DOMContentLoaded', function() {
             const percentage = results.churnProbability;
             pieChartVisual.style.background = `conic-gradient(#D4A017 0% ${percentage}%, rgba(212, 160, 23, 0.1) ${percentage}% 100%)`;
             console.log('Updated pie chart visualization to', percentage, '%');
-        }
-        
-        // Update group label below pie chart
-        const groupLabel = document.getElementById('customerGroupLabel');
-        console.log('groupLabel found?', !!groupLabel);
-        if (groupLabel) {
-            groupLabel.textContent = results.customerGroup;
-            console.log('Updated group label to', results.customerGroup);
         }
         
         // Update the four dashboard cards at the top
